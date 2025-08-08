@@ -281,10 +281,10 @@ const Header = ({ onShowSidebar }) => {
             Welcome, Guest
           </h6>
           <ul className="list-none text-left">
-            <li className="border-b border-t border-gray-700">
+            <li className="border-b border-t border-gray-700 hover:text-gray-500 ">
               <button
                 onClick={handleDashboardClick}
-                className="flex items-center gap-4 px-3 py-3 lg:py-6 text-white hover:text-gray-500 hover:bg-opacity-10 rounded-md transition-colors w-full text-left"
+                className="flex items-center gap-4 px-3 py-3 lg:py-6 text-white hover:text-gray-500 hover:bg-opacity-10 hover:cursor-pointer rounded-md transition-colors w-full text-left"
               >
                 <RxDashboard size={24} />
                 <span className="font-medium md:font-large">

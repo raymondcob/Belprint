@@ -13,22 +13,43 @@ import Shop from "./pages/Shop.jsx";
 import Blog from "./pages/Blog.jsx";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
+import Uploads from "./pages/Dashboard/uploads.jsx";
+import Favorites from "./pages/Dashboard/favorites.jsx";
+import Invoice from "./pages/Dashboard/invoice.jsx";
+import AccountSettings from "./pages/Dashboard/acct-settings.jsx";
+import Orders from "./pages/Dashboard/orders.jsx";
+import Quotes from "./pages/Dashboard/quotes.jsx";
+import TrackOrder from "./pages/Dashboard/track-order.jsx";
 
 function AppContent() {
   const location = useLocation();
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 
-  // Show sidebar only when on dashboard route
-  const shouldShowSidebar = location.pathname === "/dashboard";
+  const validSidebarPaths = [
+  "/dashboard",
+  "/uploads",
+  "/favorites",
+  "/orders",
+  "/quotes",
+  "/invoice",
+  "/track-order",
+  "/acct-settings"
+];
+
+// Check if the current path is included in the list
+const shouldShowSidebar = validSidebarPaths.includes(location.pathname);
+
 
   useEffect(() => {
     // Automatically show sidebar when navigating to dashboard
-    if (location.pathname === "/dashboard") {
+    if (location.pathname === "/dashboard" || location.pathname === "/uploads" || location.pathname === "/favorites" || location.pathname === "/orders" || location.pathname === "/quotes" || location.pathname === "/invoice" || location.pathname === "/track-order" || location.pathname === "/acct-settings") {
       setIsSidebarVisible(true);
     } else {
       setIsSidebarVisible(false);
     }
   }, [location.pathname]);
+
+ 
 
   const showSidebar = () => {
     setIsSidebarVisible(true);
@@ -51,12 +72,14 @@ function AppContent() {
           }`}
         >
           <Routes>
-            <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/uploads" element={<Uploads/>} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/quotes" element={<Quotes />} />
+            <Route path="/invoice" element={<Invoice />} />
+            <Route path="/track-order" element={<TrackOrder />} />
+            <Route path="/acct-settings" element={<AccountSettings />} />
           </Routes>
         </main>
       </div>

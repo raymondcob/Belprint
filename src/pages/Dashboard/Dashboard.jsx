@@ -1,51 +1,28 @@
-import React from "react";
-
 const Dashboard = () => {
   return (
-    <div className="max-w-6xl mx-auto">
-      <h1 className="text-3xl font-bold text-gray-900 mb-6">Dashboard</h1>
+    <div className="max-w-full ">
+      <h1 className="text-3xl font-bold text-gray-900 mb-14 text-start ">
+        Welcome Back , User
+      </h1>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h3 className="text-lg font-semibold text-gray-700">Recent Orders</h3>
-          <p className="text-3xl font-bold text-blue-600">12</p>
-        </div>
-
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h3 className="text-lg font-semibold text-gray-700">Pending</h3>
-          <p className="text-3xl font-bold text-yellow-600">3</p>
-        </div>
-
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h3 className="text-lg font-semibold text-gray-700">Completed</h3>
-          <p className="text-3xl font-bold text-green-600">9</p>
-        </div>
-
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h3 className="text-lg font-semibold text-gray-700">
-            Rewards Points
+      <div className="grid md:grid-cols-2 gap-6 mb-8 justify-between ">
+        <div className=" p-3 rounded-lg shadow-md w-[35%] ">
+          <h3 className="text-2xl font-semibold text-gray-700 mb-5">
+            Recent Orders
           </h3>
-          <p className="text-3xl font-bold text-purple-600">1,250</p>
+          <p className="text-6xl font-bold text-blue-600 text-center">12</p>
         </div>
-      </div>
 
-      <div className="bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-xl font-semibold mb-4">Recent Activity</h2>
-        <div className="space-y-4">
-          <div className="flex items-center justify-between p-4 bg-gray-50 rounded">
-            <div>
-              <p className="font-medium">Business Cards Order</p>
-              <p className="text-sm text-gray-600">Order #12345</p>
-            </div>
-            <span className="text-green-600 font-medium">Completed</span>
-          </div>
-
-          <div className="flex items-center justify-between p-4 bg-gray-50 rounded">
-            <div>
-              <p className="font-medium">Banner Printing</p>
-              <p className="text-sm text-gray-600">Order #12346</p>
-            </div>
-            <span className="text-yellow-600 font-medium">In Progress</span>
+        <div className="flex flex-col w-[45%] shadow-md rounded-lg bg-gray-400 p-3 ">
+          <h3 className="text-2xl font-semibold text-gray-700 text-start mt-2 ml-2  ">
+            Cart Summary
+          </h3>
+          <div className="flex flex-col content-center items-center mt-3 p-3">
+            <h4 className="font-semibold mt-2">
+              You Don't have anything in your Cart
+            </h4>
+            <p className="">Ready to shop? so are we!</p>
+            <a href="#">Shop Now</a>
           </div>
         </div>
       </div>
