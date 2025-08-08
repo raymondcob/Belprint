@@ -8,6 +8,7 @@ import { MdFavorite, MdHistory } from "react-icons/md";
 import { FaEnvelopeOpenText } from "react-icons/fa6";
 import { CiSettings } from "react-icons/ci";
 import { FiCompass } from "react-icons/fi";
+import { FaFileInvoice } from "react-icons/fa";
 
 const Sidebar = ({ isVisible, onHide }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -21,7 +22,7 @@ const Sidebar = ({ isVisible, onHide }) => {
     { type: "header", label: "Orders" },
     { type: "link", icon: MdHistory, label: "Order History", href: "/orders" },
     { type: "link", icon: FaEnvelopeOpenText, label: "Quotes", href: "/quotes" },
-    { type: "link", icon: TbHistory, label: "Invoice", href: "/invoice" },
+    { type: "link", icon: FaFileInvoice, label: "Invoice", href: "/invoice" },
     { type: "link", icon: FiCompass, label: "Track Order", href: "/track-order" },
     { type: "header", label: "Settings " },
     { type: "link", icon: CiSettings, label: "Account Settings", href: "/acct-settings" },

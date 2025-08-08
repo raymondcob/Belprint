@@ -1,87 +1,98 @@
+import React, { useState, useMemo } from "react";
 import DataTable from "react-data-table-component";
 import BelprintLogoBlack from "../../assets/BELPRINT-LOGO.svg";
 import { FaPrint } from "react-icons/fa";
 
-// Sample data for the table
-const invoiceData = [
+// Data matching the structure of multiple invoices
+const initialInvoiceData = [
   {
-    item: "Business Cards (Full Color, 300gsm, 100pcs)",
-    qty: 2,
-    unitPrice: 25.0,
-    total: 50.0,
+    id: "INV-20250806",
+    customer: "User",
+    email: "user@email.com",
+    phone: "+501-600-0000",
+    date: "2025-08-06",
+    items: [
+      {
+        item: "Business Cards (Full Color, 300gsm, 100pcs)",
+        qty: 2,
+        unitPrice: 25.0,
+        total: 50.0,
+      },
+      {
+        item: "Flyers (A5, Glossy, 500pcs)",
+        qty: 1,
+        unitPrice: 60.0,
+        total: 60.0,
+      },
+      {
+        item: "Banner (3ft x 6ft, Full Color)",
+        qty: 1,
+        unitPrice: 40.0,
+        total: 40.0,
+      },
+    ],
   },
-  { item: "Flyers (A5, Glossy, 500pcs)", qty: 1, unitPrice: 60.0, total: 60.0 },
   {
-    item: "Banner (3ft x 6ft, Full Color)",
-    qty: 1,
-    unitPrice: 40.0,
-    total: 40.0,
+    id: "INV-20250720",
+    customer: "User",
+    email: "user@example.com",
+    phone: "+501-601-1111",
+    date: "2025-07-20",
+    items: [
+      {
+        item: "T-shirt Printing (Front & Back)",
+        qty: 10,
+        unitPrice: 15.0,
+        total: 150.0,
+      },
+      {
+        item: "Mugs (Custom Design)",
+        qty: 5,
+        unitPrice: 12.0,
+        total: 60.0,
+      },
+    ],
   },
 ];
 
-const invoiceColumns = [
-  {
-    name: "Item",
-    selector: (row) => row.item,
-    grow: 2,
-  },
-  {
-    name: "Qty",
-    selector: (row) => row.qty,
-    center: true,
-  },
-  {
-    name: "Unit Price",
-    selector: (row) => `$${row.unitPrice.toFixed(2)}`,
-    center: true,
-  },
-  {
-    name: "Total",
-    selector: (row) => `$${row.total.toFixed(2)}`,
-    center: true,
-  },
-];
-
-const customStyles = {
-  headCells: {
-    style: {
-      backgroundColor: "#f1f5f9",
-      fontSize: "1rem",
-      fontWeight: "bold",
-      color: "#4b5563",
-    },
-  },
-  cells: {
-    style: {
-      fontSize: "0.875rem",
-    },
-  },
-};
-
-export default function Invoice() {
-  const subtotal = invoiceData.reduce((sum, item) => sum + item.total, 0);
+// Expanded component for detailed invoice view
+const ExpandedComponent = ({ data }) => {
+  const subtotal = data.items.reduce((sum, item) => sum + item.total, 0);
   const gst = subtotal * 0.125;
   const total = subtotal + gst;
 
-  return (
-    <div className="mx-auto max-w-full p-4">
-      <h1 className="mb-8 text-3xl font-bold text-gray-900 text-start">
-        Invoice
-      </h1>
+  const invoiceColumns = [
+    { name: "Item", selector: (row) => row.item, grow: 2 },
+    { name: "Qty", selector: (row) => row.qty, center: true },
+    { name: "Unit Price", selector: (row) => `$${row.unitPrice.toFixed(2)}`, center: true },
+    { name: "Total", selector: (row) => `$${row.total.toFixed(2)}`, center: true },
+  ];
 
-      <div className="mx-auto w-full max-w-3xl rounded-lg bg-white p-6 shadow-lg">
+  const customStyles = {
+    headCells: {
+      style: {
+        backgroundColor: "#f1f5f9",
+        fontSize: "0.9rem",
+        fontWeight: "bold",
+        color: "#4b5563",
+      },
+    },
+    cells: {
+      style: {
+        fontSize: "0.8rem",
+      },
+    },
+  };
+
+  return (
+    <div className="p-4 rounded-xl bg-gray-100 flex justify-center">
+      <div className="w-full max-w-3xl rounded-lg bg-white p-6 shadow-lg border-2 border-gray-300">
         {/* Header Section */}
         <div className="mb-4 flex items-center justify-between border-b border-gray-300 pb-4">
           <div className="flex items-center">
-            <img
-              src={BelprintLogoBlack}
-              alt="Belprint Logo"
-              className="mr-4 h-auto w-40"
-            />
+            <img src={BelprintLogoBlack} alt="Belprint Logo" className="mr-4 h-auto w-40" />
             <div>
-              <h4 className="mb-1 text-lg font-semibold">
-                Belprint Printing Shop
-              </h4>
+              <h4 className="mb-1 text-lg font-semibold">Belprint Printing Shop</h4>
               <div className="text-sm text-gray-500">
                 Seagull Street, San Pedro, Belize
                 <br />
@@ -94,23 +105,19 @@ export default function Invoice() {
           <div className="text-right">
             <h5 className="mb-1 text-xl font-semibold">INVOICE</h5>
             <div className="text-gray-700">
-              <strong>#INV-20250806</strong>
+              <strong>#{data.id}</strong>
             </div>
-            <div className="text-gray-500">Date: 2025-08-06</div>
+            <div className="text-gray-500">Date: {data.date}</div>
           </div>
         </div>
 
         {/* Billed To Section */}
         <div className="mb-6 mt-5">
-          <h6 className="mb-2 text-sm font-semibold text-gray-700">
-            Billed To:
-          </h6>
+          <h6 className="mb-2 text-sm font-semibold text-gray-700">Billed To:</h6>
           <div className="text-sm text-gray-700">
-            <div>
-              <strong>User</strong>
-            </div>
-            <div>Email: User@email.com</div>
-            <div>Phone: +501-600-0000</div>
+            <div><strong>{data.customer}</strong></div>
+            <div>Email: {data.email}</div>
+            <div>Phone: {data.phone}</div>
           </div>
         </div>
 
@@ -118,7 +125,7 @@ export default function Invoice() {
         <div className="overflow-hidden rounded-lg border border-gray-200 shadow-sm">
           <DataTable
             columns={invoiceColumns}
-            data={invoiceData}
+            data={data.items}
             customStyles={customStyles}
             noHeader
           />
@@ -129,15 +136,11 @@ export default function Invoice() {
           <div className="w-full text-right sm:w-1/2 md:w-1/3">
             <div className="py-1">
               <span className="text-gray-600">Subtotal:</span>
-              <span className="ml-2 font-semibold text-gray-800">
-                ${subtotal.toFixed(2)}
-              </span>
+              <span className="ml-2 font-semibold text-gray-800">${subtotal.toFixed(2)}</span>
             </div>
             <div className="py-1">
               <span className="text-gray-600">GST (12.5%):</span>
-              <span className="ml-2 font-semibold text-gray-800">
-                ${gst.toFixed(2)}
-              </span>
+              <span className="ml-2 font-semibold text-gray-800">${gst.toFixed(2)}</span>
             </div>
             <div className="border-t border-gray-300 pt-2 text-lg font-bold">
               <span className="text-gray-900">Total:</span>
@@ -145,22 +148,88 @@ export default function Invoice() {
             </div>
           </div>
         </div>
-        <div className="mb-3">
-          <strong>Notes:</strong>
-          <div className="text-black text-sm">
-            Thank you for your business! Please allow 2-3 business days for
-            production. Contact us for any questions regarding your order.
-          </div>
-        </div>
-        <div className="text-right">
+        
+        {/* Print Button */}
+        <div className="text-right mt-6">
           <button
-            className="p-3 bg-white w-25 h-auto rounded-lg border border-blue-600 text-blue-600 hover:cursor-pointer flex items-center hover:text-white hover:bg-blue-500  "
-            onClick={()=> window.print()}
+            className="flex items-center justify-center gap-3 px-6 py-3 rounded-lg border-2 border-blue-600 text-blue-600 font-medium hover:bg-blue-600 hover:text-white transition-colors"
+            onClick={() => window.print()}
           >
-            <FaPrint />
-            <h4 className="ml-3 text-md">Print</h4>
+            <FaPrint /> Print
           </button>
         </div>
+      </div>
+    </div>
+  );
+};
+
+// Main component with the data table and search functionality
+export default function Invoice() {
+  const [filterText, setFilterText] = useState('');
+
+  const filteredData = useMemo(() => {
+    return initialInvoiceData.filter(
+      (item) => item.id && item.id.toLowerCase().includes(filterText.toLowerCase()),
+    );
+  }, [filterText]);
+
+  const invoiceListColumns = [
+    {
+      name: "Invoice #",
+      selector: (row) => row.id,
+      sortable: true,
+      grow: 1,
+    },
+    {
+      name: "Customer",
+      selector: (row) => row.customer,
+      sortable: true,
+      grow: 2,
+    },
+    {
+      name: "Date",
+      selector: (row) => row.date,
+      sortable: true,
+    },
+  ];
+
+  return (
+    <div className="mx-auto max-w-full p-4">
+      <h1 className="mb-8 text-3xl font-bold text-gray-900 text-start">Invoices</h1>
+      
+      <div className="relative w-full max-w-sm mb-6 mt-10">
+        <label htmlFor="search-input" className="sr-only">Search</label>
+        <input
+          type="search"
+          id="search-input"
+          placeholder="Search For Invoice Number..."
+          value={filterText}
+          onChange={(e) => setFilterText(e.target.value)}
+          className="block w-full p-2.5 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+        />
+        <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+          <svg className="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 20 20">
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <div className="w-full">
+        <DataTable
+          columns={invoiceListColumns}
+          data={filteredData}
+          expandableRows
+          expandableRowsComponent={ExpandedComponent}
+          pagination
+          striped
+          highlightOnHover
+        />
       </div>
     </div>
   );
