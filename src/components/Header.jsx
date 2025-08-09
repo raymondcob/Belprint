@@ -127,7 +127,7 @@ const Header = ({ onShowSidebar }) => {
       {/* Main Header */}
       <header className="bg-black text-white relative px-4 sm:px-12">
         {/* Mobile Hamburger Button */}
-        <div className="absolute top-10 right-6 z-[9999] md:hidden">
+        <div className="absolute top-5 right-6 z-[9999] md:hidden">
           <button
             onClick={toggleMobileMenu}
             className="w-8 h-8 relative focus:outline-none"
@@ -135,19 +135,19 @@ const Header = ({ onShowSidebar }) => {
           >
             {/* Span 1 */}
             <span
-              className={`block absolute h-0.5 w-full bg-white rounded-sm transition-all duration-300 ease-in-out
-                ${isMobileMenuOpen ? "rotate-45 translate-y-[10px]" : "top-0"}`}
+              className={`block absolute h-0.5 w-full bg-black rounded-sm transition-all duration-300 ease-in-out
+                ${isMobileMenuOpen ? "rotate-45 translate-y-[10px] bg-white" : "top-0"}`}
             ></span>
             {/* Span 2 */}
             <span
-              className={`block absolute h-0.5 w-full bg-white rounded-sm transition-all duration-300 ease-in-out
-                ${isMobileMenuOpen ? "opacity-0" : "top-[10px]"}`}
+              className={`block absolute h-0.5 w-full bg-black rounded-sm transition-all duration-300 ease-in-out
+                ${isMobileMenuOpen ? "opacity-0 " : "top-[10px]"}`}
             ></span>
             {/* Span 3 */}
             <span
-              className={`block absolute h-0.5 w-full bg-white rounded-sm transition-all duration-300 ease-in-out
+              className={`block absolute h-0.5 w-full bg-black rounded-sm transition-all duration-300 ease-in-out
                 ${
-                  isMobileMenuOpen ? "-rotate-45 -translate-y-[10px]" : "top-5"
+                  isMobileMenuOpen ? "-rotate-45 -translate-y-[10px] bg-white" : "top-5"
                 }`}
             ></span>
           </button>
@@ -266,7 +266,7 @@ const Header = ({ onShowSidebar }) => {
 
       {/* The Account Modal/Panel */}
       <div
-        className={`fixed top-0 right-0 z-[10000] h-screen w-[20%] bg-black/90 text-white shadow-lg transform transition-transform duration-500 ease-in-out
+        className={`fixed top-0 right-0 z-[10000] h-screen w-[75%] md:[20%] bg-black/90 text-white shadow-lg transform transition-transform duration-500 ease-in-out
           ${isAccountModalOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="relative p-2">

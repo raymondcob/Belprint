@@ -90,15 +90,14 @@ const customStyles = {
 export default function Uploads() {
   return (
     <>
-    <div className="mb-9 text-start ml-4">
-        <h2 className="text-4xl font-bold text-gray-900">My Uploads</h2>
-      </div>
-    <div className="container mx-auto px-4 py-8 flex flex-col content-center justify-center">
+    <h2 className="text-4xl font-bold text-gray-900 text-center md:text-start w-full mt-5">My Uploads</h2>
+      
+    <div className="container mx-auto px-4 py-8 flex flex-col content-center justify-center w-full">
       
       
       {/* Upload Box Section */}
 
-       <div class=" flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-15 w-[50%]  mt-4 mb-4">
+       <div class=" flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-15 w-[50%]  mt-4 mb-4 mx-auto">
             <div class="text-center">
               <svg viewBox="0 0 24 24" fill="currentColor" data-slot="icon" aria-hidden="true" class="mx-auto size-12 text-gray-300">
                 <path d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" fill-rule="evenodd" />
@@ -116,9 +115,9 @@ export default function Uploads() {
      
 
       {/* Uploaded Files Table Section */}
-      <div className="flex justify-center">
+      <div className="flex justify-center  ">
         <div className="w-full max-w-4xl rounded-lg bg-white shadow-lg">
-          <div className="p-6">
+          <div className="p-6 w-full">
             <h4 className="mb-4 text-3xl font-semibold text-gray-800">Uploaded Files</h4>
             <DataTable
               columns={columns}

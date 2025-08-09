@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { RxDashboard } from "react-icons/rx";
-import { IoGiftOutline } from "react-icons/io5";
-import { TbHistory } from "react-icons/tb";
 import { PiUploadSimpleFill } from "react-icons/pi";
-import { MdFavorite, MdHistory } from "react-icons/md";
+import { MdFavorite, MdHistory,MdKeyboardDoubleArrowRight,MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { FaEnvelopeOpenText } from "react-icons/fa6";
 import { CiSettings } from "react-icons/ci";
 import { FiCompass } from "react-icons/fi";
 import { FaFileInvoice } from "react-icons/fa";
+import { TbLayoutSidebarRightExpand } from "react-icons/tb";
 
 const Sidebar = ({ isVisible, onHide }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -41,21 +40,9 @@ const Sidebar = ({ isVisible, onHide }) => {
       {/* Mobile Toggle Button */}
       <button
         onClick={() => setIsMobileOpen(!isMobileOpen)}
-        className="fixed top-20 left-4 z-50 lg:hidden bg-black text-white p-2 rounded-md"
+        className="fixed top-4 mb-2 left-2 z-50 lg:hidden bg-black text-white p-2 rounded-md"
       >
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
+        <TbLayoutSidebarRightExpand size={27}/>
       </button>
 
       {/* Sidebar */}
@@ -102,19 +89,7 @@ const Sidebar = ({ isVisible, onHide }) => {
                 onClick={() => setIsCollapsed(!isCollapsed)}
                 className="hidden lg:block p-2 hover:bg-gray-700 rounded"
               >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
-                  />
-                </svg>
+                {isCollapsed ?  <MdKeyboardDoubleArrowRight size={20}/> : <MdKeyboardDoubleArrowLeft size={20}/> }
               </button>
             </div>
           </div>

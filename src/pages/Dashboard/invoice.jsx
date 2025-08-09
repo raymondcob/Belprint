@@ -191,7 +191,7 @@ export default function Invoice() {
 
   return (
     <div className="mx-auto max-w-full p-4">
-      <h1 className="mb-8 text-3xl font-bold text-gray-900 text-start">Invoices</h1>
+      <h1 className="mb-8 text-3xl font-bold text-gray-900 text-start  ">Invoices</h1>
       
       <div className="relative w-full max-w-sm mb-6 mt-10">
         <label htmlFor="search-input" className="sr-only">Search</label>
