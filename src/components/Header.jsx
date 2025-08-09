@@ -266,7 +266,7 @@ const Header = ({ onShowSidebar }) => {
 
       {/* The Account Modal/Panel */}
       <div
-        className={`fixed top-0 right-0 z-[10000] h-screen w-[75%] md:[20%] bg-black/90 text-white shadow-lg transform transition-transform duration-500 ease-in-out
+        className={`fixed top-0 right-0 z-[10000] h-screen w-[75%] md:w-[20%] bg-black/90 text-white shadow-lg transform transition-transform duration-500 ease-in-out
           ${isAccountModalOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="relative p-2">
