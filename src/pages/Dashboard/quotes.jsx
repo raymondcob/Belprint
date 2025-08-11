@@ -103,7 +103,6 @@ const ExpandedComponent = ({ data }) => {
 // Main component with the data table and search functionality
 export default function Quotes() {
   const [filterText, setFilterText] = useState('');
-  // No need for useNavigate here anymore as it's used in ExpandedComponent
 
   const filteredData = useMemo(() => {
     return initialQuoteData.filter(
@@ -115,7 +114,7 @@ export default function Quotes() {
   const quoteColumns = [
     { name: 'Quote #', selector: row => row.id, sortable: true, grow: 1 },
     { name: 'Date', selector: row => row.date, sortable: true },
-    // Removed the "View PDF" column from here
+    
   ];
 
   return (

@@ -10,7 +10,7 @@ import { CiCreditCard1 } from "react-icons/ci";
 import { CiMoneyBill } from "react-icons/ci";
 import { CiUser } from "react-icons/ci";
 import { CiMedal } from "react-icons/ci";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes,FaShoppingCart } from "react-icons/fa";
 
 const Header = ({ onShowSidebar }) => {
   const navigate = useNavigate();
@@ -44,6 +44,10 @@ const Header = ({ onShowSidebar }) => {
     setIsAccountModalOpen(false);
     navigate("/dashboard");
   };
+
+  const modalPanelItems =[
+    
+  ]
 
   return (
     <>
@@ -345,6 +349,17 @@ const Header = ({ onShowSidebar }) => {
                 <CiMedal size={24} />
                 <span className="font-medium">Military Discount Benefit</span>
               </a>
+            </li>
+            <li className="border-b border-gray-700">
+              <button
+                onClick={()=>navigate('/cart')}
+                className="flex items-center gap-4 px-3 py-3 lg:py-6 text-white hover:text-gray-500 hover:bg-opacity-10 hover:cursor-pointer rounded-md transition-colors w-full text-left"
+              >
+                <FaShoppingCart size={24} />
+                <span className="font-medium md:font-large">
+                  Cart
+                </span>
+              </button>
             </li>
             <li>
               <a

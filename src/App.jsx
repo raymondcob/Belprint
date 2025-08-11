@@ -21,6 +21,8 @@ import Orders from "./pages/Dashboard/orders.jsx";
 import Quotes from "./pages/Dashboard/quotes.jsx";
 import TrackOrder from "./pages/Dashboard/track-order.jsx";
 import QuotePDFView from "./pages/Dashboard/PDFViews/Quotespdf.jsx"
+import Cart from "./pages/Cart.jsx";
+import CartCheckOut from "./pages/Dashboard/Cart/CartCheckOut.jsx";
 
 function AppContent() {
   const location = useLocation();
@@ -73,6 +75,9 @@ const shouldShowSidebar = validSidebarPaths.includes(location.pathname);
           }`}
         >
           <Routes>
+            
+            <Route path="/cart" element={<Cart />} />
+             <Route path="/cart-checkout" element={<CartCheckOut />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/uploads" element={<Uploads/>} />
             <Route path="/favorites" element={<Favorites />} />
@@ -81,7 +86,7 @@ const shouldShowSidebar = validSidebarPaths.includes(location.pathname);
             <Route path="/invoice" element={<Invoice />} />
             <Route path="/track-order" element={<TrackOrder />} />
             <Route path="/acct-settings" element={<AccountSettings />} />
-            <Route path="/quote-pdf/quote:id" element={<QuotePDFView />} />
+            <Route path="/quote-pdf/:quoteId" element={<QuotePDFView />} />
           </Routes>
         </main>
       </div>

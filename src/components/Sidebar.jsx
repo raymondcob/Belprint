@@ -87,7 +87,7 @@ const Sidebar = ({ isVisible, onHide }) => {
               )}
               <button
                 onClick={() => setIsCollapsed(!isCollapsed)}
-                className="hidden lg:block p-2 hover:bg-gray-700 rounded"
+                className="hidden lg:block  hover:bg-gray-700 rounded"
               >
                 {isCollapsed ?  <MdKeyboardDoubleArrowRight size={20}/> : <MdKeyboardDoubleArrowLeft size={20}/> }
               </button>
@@ -113,7 +113,7 @@ const Sidebar = ({ isVisible, onHide }) => {
                     <li key={index}>
                       <Link
                         to={item.href}
-                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-700 transition-colors"
+                        className={`flex items-center gap-3 p-3 rounded-lg hover:bg-gray-700 transition-colors ${isCollapsed && "justify-center"}`}
                       >
                         <item.icon className="w-5 h-5 flex-shrink-0" />
                         {!isCollapsed && (

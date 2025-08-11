@@ -143,17 +143,6 @@ const QuotePDFView = () => {
             <p>{quoteData.notes}</p>
           </div>
         </div>
-
-        {/* Print Button (can keep this for manual printing if needed) */}
-        <div className="text-right mt-6">
-           {/* You can keep this button or remove it if you only want auto-print */}
-           {/* <button
-            className="flex items-center justify-center gap-3 px-6 py-3 rounded-lg border-2 border-blue-600 text-blue-600 font-medium hover:bg-blue-600 hover:text-white transition-colors"
-            onClick={handlePrint}
-          >
-            <FaPrint /> Print PDF
-          </button> */}
-        </div>
       </div>
     </div>
   );
