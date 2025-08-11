@@ -25,6 +25,7 @@ const favoriteItems = [
     description: "This is some example text within the card body. It provides a brief description or content related to the card's purpose.",
     isFavorite: true,
   },
+  
   {
     id: 4,
     image: Banner,
@@ -69,7 +70,7 @@ const FavoriteCard = ({ item }) => {
 
 export default function Favorites() {
   return (
-    <div className="max-w-full">
+    <div >
       <h1 className="mb-14 text-center md:text-start text-3xl md:text-4xl font-bold text-gray-900">
         Your Favorites
       </h1>

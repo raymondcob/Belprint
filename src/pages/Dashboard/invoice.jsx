@@ -156,7 +156,6 @@ const ExpandedComponent = ({ data }) => {
             className="flex items-center justify-center gap-3 px-6 py-3 rounded-lg border-2 text-red-500 border-red-500 font-medium hover:bg-red-600 hover:text-white transition-colors hover:cursor-pointer"
             onClick={() => window.print()}
           >
-            <FaPrint /> Print
           </button>
         </div>
       </div>

@@ -20,6 +20,7 @@ import AccountSettings from "./pages/Dashboard/acct-settings.jsx";
 import Orders from "./pages/Dashboard/orders.jsx";
 import Quotes from "./pages/Dashboard/quotes.jsx";
 import TrackOrder from "./pages/Dashboard/track-order.jsx";
+import QuotePDFView from "./pages/Dashboard/PDFViews/Qoutespdf.jsx"
 
 function AppContent() {
   const location = useLocation();
@@ -67,7 +68,7 @@ const shouldShowSidebar = validSidebarPaths.includes(location.pathname);
           <Sidebar isVisible={isSidebarVisible} onHide={hideSidebar} />
         )}
         <main
-          className={`p-6 bg-gray-50 ${
+          className={`p-10 bg-gray-50 ${
             shouldShowSidebar ? "flex-1" : "w-full"
           }`}
         >
@@ -80,6 +81,7 @@ const shouldShowSidebar = validSidebarPaths.includes(location.pathname);
             <Route path="/invoice" element={<Invoice />} />
             <Route path="/track-order" element={<TrackOrder />} />
             <Route path="/acct-settings" element={<AccountSettings />} />
+            <Route path="/qoute-pdf/qoute:id" element={<QuotePDFView />} />
           </Routes>
         </main>
       </div>

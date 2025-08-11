@@ -3,6 +3,7 @@ import DataTable from 'react-data-table-component';
 import BelprintLogoBlack from "../../assets/BELPRINT-LOGO.svg";
 import { FaPrint } from "react-icons/fa";
 import { useReactToPrint } from "react-to-print";
+import { useNavigate } from 'react-router-dom'; 
 
 // Data for the main table and expanded details
 const initialQuoteData = [
@@ -38,23 +39,11 @@ const initialQuoteData = [
 ];
 
 // Sub-component for the nested items table
-const ExpandedQuoteItems = ({ items, selectedItemIds, handleSelect }) => {
- 
+const ExpandedQuoteItems = ({ items}) => {
+
 
   const itemColumns = [
-    { 
-      name: "", 
-      cell: (row) => (
-        <input
-          type="checkbox"
-          checked={selectedItemIds.includes(row.id)} 
-          onChange={() => handleSelect(row.id)}
-        />
-      ),
-      width:"60px",
-      ignoreRowClick: true,
-      button:true
-    },
+    
     { name: '#', selector: row => row.id, width: '60px' },
     { name: 'Qty', selector: row => row.qty, width: '80px' },
     { name: 'Description', selector: row => row.description, grow: 2 },
@@ -73,30 +62,9 @@ const ExpandedQuoteItems = ({ items, selectedItemIds, handleSelect }) => {
 
 // Component for the expanded row content (your design)
 const ExpandedComponent = ({ data }) => {
-  // State to manage which items are selected
-  const [selectedItemIds, setSelectedItemIds] = useState(data.items.map(item => item.id));
- 
 
-  // Function to handle checkbox changes
-  const handleSelectItem = (itemId) => {
-    setSelectedItemIds(prevIds => {
-      if (prevIds.includes(itemId)) {
-        return prevIds.filter(id => id !== itemId); // Remove item
-      } else {
-        return [...prevIds, itemId]; // Add item
-      }
-    });
-  };
 
-  // Memoized calculation for subtotal based on selected items
-  const subtotal = useMemo(() => {
-    return data.items
-      .filter(item => selectedItemIds.includes(item.id))
-      .reduce((sum, item) => sum + item.qty * item.unitCost, 0);
-  }, [selectedItemIds, data.items]);
 
-  const gst = subtotal * 0.125;
-  const total = subtotal + gst;
 
   const componentRef = useRef();
 
@@ -129,36 +97,16 @@ const ExpandedComponent = ({ data }) => {
           </div>
           <img src={BelprintLogoBlack} alt="Belprint Logo" className="w-32 h-auto" />
         </div>
-        <ExpandedQuoteItems 
+        <ExpandedQuoteItems
           items={data.items}
-          selectedItemIds={selectedItemIds}
-          handleSelect={handleSelectItem}
         />
-        <div className="flex justify-end border-t border-blue-300">
-          <div className="w-1/2">
-            <div className="bg-gray-100 p-4 rounded-lg mt-3">
-              <div className="flex justify-between font-semibold text-gray-800"><span>Subtotal</span><span>${subtotal.toFixed(2)}</span></div>
-              <div className="flex justify-between text-sm text-gray-600 mt-1"><span>GST (12.5%)</span><span>${gst.toFixed(2)}</span></div>
-              <div className="flex justify-between font-bold text-xl text-gray-900 mt-2 border-t pt-2 border-gray-300"><span>Total</span><span>${total.toFixed(2)}</span></div>
-            </div>
-          </div>
-        </div>
-        <div className="mt-6 grid grid-cols-3 gap-4 text-sm text-gray-700 border-t border-blue-300 p-3">
-          <div>
-            <h4 className="font-bold text-gray-900">Contact Information:</h4>
-            <p>Email: <a href={`mailto:sale@belprint.com`} className="text-blue-600">sale@belprint.com</a></p>
-            <p>Location: #13 Seagull Street</p>
-            <p>Phone Number: +501-628-8081</p>
-          </div>
-          <div>
-            <h4 className="font-bold text-gray-900">Payment Details:</h4>
-            <p>{data.paymentDetails}</p>
-          </div>
-          <div>
-            <h4 className="font-bold text-gray-900">Notes:</h4>
-            <p>{data.notes}</p>
-          </div>
-        </div>
+        <div className="flex justify-end mt-2">
+
+        <button className='p-2 rounded-lg border-2 text-red-500 border-red-500 font-medium hover:bg-red-600 hover:text-white transition-colors hover:cursor-pointer'  onClick={() => navigate(`/quote-pdf/${row.id}`)}>
+                View More
+        </button>
+
+        </div>
       </div>
     </div>
   );
@@ -167,9 +115,11 @@ const ExpandedComponent = ({ data }) => {
 // Main component with the data table and search functionality
 export default function Quotes() {
   const [filterText, setFilterText] = useState('');
+  const navigate = useNavigate(); // Initialize useNavigate
+
   const filteredData = useMemo(() => {
     return initialQuoteData.filter(
-      (item) => item.id && item.id.toLowerCase().includes(filterText.toLowerCase()) || 
+      (item) => item.id && item.id.toLowerCase().includes(filterText.toLowerCase()) ||
                item.date && item.date.toLowerCase().includes(filterText.toLowerCase())
     );
   }, [filterText]);
@@ -177,6 +127,7 @@ export default function Quotes() {
   const quoteColumns = [
     { name: 'Quote #', selector: row => row.id, sortable: true, grow: 1 },
     { name: 'Date', selector: row => row.date, sortable: true },
+    
   ];
 
   return (
