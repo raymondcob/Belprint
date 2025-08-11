@@ -32,6 +32,7 @@ const favoriteItems = [
     description: "This is some example text within the card body. It provides a brief description or content related to the card's purpose.",
     isFavorite: true,
   },
+ 
 ];
 
 const FavoriteCard = ({ item }) => {
@@ -58,7 +59,7 @@ const FavoriteCard = ({ item }) => {
         <p className="text-sm text-gray-600">{item.description}</p>
       </div>
       <div className="mt-4 flex items-center justify-between">
-        <button className="flex-1 rounded-full bg-blue-600 py-2 text-lg font-medium text-white shadow-md transition-colors duration-200 hover:bg-blue-700 hover:cursor-pointer">
+        <button className="flex-1 rounded-full bg-red-500 py-2 text-lg font-medium text-white shadow-md transition-colors duration-200 hover:bg-red-700 hover:cursor-pointer">
           Add to Cart
         </button>
       </div>
@@ -69,7 +70,7 @@ const FavoriteCard = ({ item }) => {
 export default function Favorites() {
   return (
     <div className="max-w-full">
-      <h1 className="mb-14 text-center md:text-start text-3xl font-bold text-gray-900">
+      <h1 className="mb-14 text-center md:text-start text-3xl md:text-4xl font-bold text-gray-900">
         Your Favorites
       </h1>
 

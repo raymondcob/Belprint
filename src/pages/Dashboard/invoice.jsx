@@ -153,7 +153,7 @@ const ExpandedComponent = ({ data }) => {
         {/* Print Button */}
         <div className="text-right mt-6">
           <button
-            className="flex items-center justify-center gap-3 px-6 py-3 rounded-lg border-2 border-blue-600 text-blue-600 font-medium hover:bg-blue-600 hover:text-white transition-colors"
+            className="flex items-center justify-center gap-3 px-6 py-3 rounded-lg border-2 text-red-500 border-red-500 font-medium hover:bg-red-600 hover:text-white transition-colors hover:cursor-pointer"
             onClick={() => window.print()}
           >
             <FaPrint /> Print
@@ -191,7 +191,7 @@ export default function Invoice() {
 
   return (
     <div className="mx-auto max-w-full p-4">
-      <h1 className="mb-8 text-3xl font-bold text-gray-900 text-start  ">Invoices</h1>
+      <h1 className="mb-8 text-3xl md:text-4xl  font-bold text-gray-900 text-start  ">Invoices</h1>
       
       <div className="relative w-full max-w-sm mb-6 mt-10">
         <label htmlFor="search-input" className="sr-only">Search</label>

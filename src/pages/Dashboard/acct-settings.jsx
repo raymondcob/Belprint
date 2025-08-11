@@ -37,7 +37,7 @@ export default function AccountSettings() {
               type="text"
               id="name"
               className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
-              defaultValue="John Doe"
+              defaultValue="User"
             />
           </div>
           <div>
@@ -48,9 +48,37 @@ export default function AccountSettings() {
               type="email"
               id="email"
               className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
-              defaultValue="john.doe@example.com"
+              defaultValue="user@example.com"
             />
           </div>
+          <div className='grid grid-cols-2 gap-2 '>
+
+            <div>
+                  <label htmlFor="email" className="mb-1 block text-sm font-medium text-gray-700">
+              Change Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+              defaultValue="user@example.com"
+            />
+            </div>
+            <div>
+              <label htmlFor="password" className="mb-1 block text-sm font-medium text-gray-700">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+              defaultValue="user@example.com"
+            />
+            </div>
+             
+           
+          </div>
+           
           <div className="flex justify-end pt-4">
             <button
               type="submit"
