@@ -20,7 +20,7 @@ import AccountSettings from "./pages/Dashboard/acct-settings.jsx";
 import Orders from "./pages/Dashboard/orders.jsx";
 import Quotes from "./pages/Dashboard/quotes.jsx";
 import TrackOrder from "./pages/Dashboard/track-order.jsx";
-import QuotePDFView from "./pages/Dashboard/PDFViews/Qoutespdf.jsx"
+import QuotePDFView from "./pages/Dashboard/PDFViews/Quotespdf.jsx"
 
 function AppContent() {
   const location = useLocation();
@@ -81,7 +81,7 @@ const shouldShowSidebar = validSidebarPaths.includes(location.pathname);
             <Route path="/invoice" element={<Invoice />} />
             <Route path="/track-order" element={<TrackOrder />} />
             <Route path="/acct-settings" element={<AccountSettings />} />
-            <Route path="/qoute-pdf/qoute:id" element={<QuotePDFView />} />
+            <Route path="/quote-pdf/quote:id" element={<QuotePDFView />} />
           </Routes>
         </main>
       </div>

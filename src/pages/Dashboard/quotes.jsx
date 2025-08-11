@@ -3,7 +3,7 @@ import DataTable from 'react-data-table-component';
 import BelprintLogoBlack from "../../assets/BELPRINT-LOGO.svg";
 import { FaPrint } from "react-icons/fa";
 import { useReactToPrint } from "react-to-print";
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 // Data for the main table and expanded details
 const initialQuoteData = [
@@ -43,12 +43,12 @@ const ExpandedQuoteItems = ({ items}) => {
 
 
   const itemColumns = [
-    
+
     { name: '#', selector: row => row.id, width: '60px' },
     { name: 'Qty', selector: row => row.qty, width: '80px' },
     { name: 'Description', selector: row => row.description, grow: 2 },
     { name: 'Size', selector: row => row.size },
-    { name: 'Unit Cost', selector: row => `$${row.unitCost.toFixed(2)}` },
+    { name: 'Unit Cost', selector: row => `$${(row.unitCost || 0).toFixed(2)}` },
   ];
   return (
     <DataTable
@@ -62,8 +62,7 @@ const ExpandedQuoteItems = ({ items}) => {
 
 // Component for the expanded row content (your design)
 const ExpandedComponent = ({ data }) => {
-
-
+  const navigate = useNavigate(); // Initialize useNavigate inside the component
 
 
   const componentRef = useRef();
@@ -77,35 +76,24 @@ const ExpandedComponent = ({ data }) => {
     <div className="p-4 rounded-xl bg-gray-100 flex justify-center" >
       <div ref={componentRef} className="w-full max-w-4xl rounded-lg bg-white p-6 shadow-lg border-2 border-gray-300">
         <div className="flex justify-between items-start mb-6 border-b border-blue-300">
+          <img src={BelprintLogoBlack} alt="Belprint Logo" className="w-32 h-auto" />
           <div>
             <h1 className="text-2xl font-bold text-gray-800">Quote <span className='text-red-500'>{data.id}</span></h1>
             <p className="text-sm text-gray-600 mt-1">Date: {data.date}</p>
             <p className="text-sm font-semibold text-red-500">Wanted Date: {data.wantedDate}</p>
           </div>
-          <div className="text-center">
-            <h2 className="text-lg font-bold text-gray-800">Belprint</h2>
-            <p className="text-xs text-gray-600">TIN #344456</p>
-            <p className="text-sm text-gray-600 mt-2">#13 Seagull Street</p>
-            <p className="text-sm text-gray-600">San Pedro, Ambergris Caye</p>
-            <p className="text-sm text-gray-600">Belize</p>
-          </div>
-          <div className="text-left">
-            <h2 className="text-lg font-bold text-gray-800">To</h2>
-            <p className="text-sm font-semibold text-gray-800">{data.customer}</p>
-            <p className="text-sm text-gray-600">{data.email}</p>
-            <p className="text-sm text-gray-600">{data.location}</p>
-          </div>
-          <img src={BelprintLogoBlack} alt="Belprint Logo" className="w-32 h-auto" />
+          
         </div>
         <ExpandedQuoteItems
           items={data.items}
         />
-        <div className="flex justify-end mt-2">
-
-        <button className='p-2 rounded-lg border-2 text-red-500 border-red-500 font-medium hover:bg-red-600 hover:text-white transition-colors hover:cursor-pointer'  onClick={() => navigate(`/quote-pdf/${row.id}`)}>
-                View More
+        <div className="flex justify-end mt-4"> {/* Added margin top for spacing */}
+        <button
+            className=' text-red-600 flex items-center justify-center gap-2 px-4 py-2 rounded-lg border-2 border-red-600 font-medium hover:bg-red-600 hover:text-white transition-colors hover:cursor-pointer'
+            onClick={() => navigate(`/quote-pdf/${data.id}`)} 
+         >
+                <FaPrint /> View PDF
         </button>
-
         </div>
       </div>
     </div>
@@ -115,7 +103,7 @@ const ExpandedComponent = ({ data }) => {
 // Main component with the data table and search functionality
 export default function Quotes() {
   const [filterText, setFilterText] = useState('');
-  const navigate = useNavigate(); // Initialize useNavigate
+  // No need for useNavigate here anymore as it's used in ExpandedComponent
 
   const filteredData = useMemo(() => {
     return initialQuoteData.filter(
@@ -127,7 +115,7 @@ export default function Quotes() {
   const quoteColumns = [
     { name: 'Quote #', selector: row => row.id, sortable: true, grow: 1 },
     { name: 'Date', selector: row => row.date, sortable: true },
-    
+    // Removed the "View PDF" column from here
   ];
 
   return (
