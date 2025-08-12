@@ -1,6 +1,6 @@
 import React from 'react';
 import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer';
-import BelprintLogoBlack from "../../../assets/BELPRINT-LOGO.svg"; // Adjust path as needed
+import { BELPRINT_LOGO_BASE64 } from '../../../utils/logoBase64';
 
 // Create styles for the PDF
 const styles = StyleSheet.create({
@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'flex-start',
     marginBottom: 20,
     borderBottom: '1px solid #3b82f6', // Blue border
     paddingBottom: 10,
@@ -167,7 +168,7 @@ const QuoteDocument = ({ quoteData }) => {
                          <Text style={[styles.quoteInfo, {textAlign: 'right'}]}>{quoteData.email}</Text>
                          <Text style={[styles.quoteInfo, {textAlign: 'right'}]}>{quoteData.location}</Text>
                     </View>
-                     {/* <Image src={BelprintLogoBlack} style={{ width: 80, height: 'auto' }} /> {/* Add your logo */}
+                      <Image src={BELPRINT_LOGO_BASE64} style={{ width: 80, height: 'auto' }} /> 
                 </View>
 
                 <Text style={styles.sectionTitle}>Items:</Text>

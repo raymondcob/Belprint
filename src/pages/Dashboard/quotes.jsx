@@ -88,9 +88,9 @@ const ExpandedComponent = ({ data }) => {
           items={data.items}
         />
         <div className="flex justify-end mt-4"> {/* Added margin top for spacing */}
-        <button
+         <button
             className=' text-red-600 flex items-center justify-center gap-2 px-4 py-2 rounded-lg border-2 border-red-600 font-medium hover:bg-red-600 hover:text-white transition-colors hover:cursor-pointer'
-            onClick={() => navigate(`/quote-pdf/${data.id}`)} 
+            onClick={() => window.open(`/quote-pdf/${data.id}`, '_blank')} 
          >
                 <FaPrint /> View PDF
         </button>

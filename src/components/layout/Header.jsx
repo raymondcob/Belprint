@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/belprint.png";
-import top1 from "../assets/icons/top-1.svg";
-import top2 from "../assets/icons/top-2.svg";
+import logo from "../../assets/belprint.png";
+import top1 from "../../assets/icons/top-1.svg";
+import top2 from "../../assets/icons/top-2.svg";
 import { RxDashboard, RxFontSize } from "react-icons/rx";
 import { TbHistory } from "react-icons/tb";
 import { IoGiftOutline } from "react-icons/io5";

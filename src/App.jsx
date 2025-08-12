@@ -1,104 +1,46 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useLocation,
-} from "react-router-dom";
-import { useState, useEffect } from "react";
-import Header from "./components/Header.jsx";
-import Sidebar from "./components/Sidebar.jsx";
-import Home from "./pages/Home.jsx";
-import Dashboard from "./pages/Dashboard/Dashboard.jsx";
-import Shop from "./pages/Shop.jsx";
-import Blog from "./pages/Blog.jsx";
-import About from "./pages/About.jsx";
-import Contact from "./pages/Contact.jsx";
-import Uploads from "./pages/Dashboard/uploads.jsx";
-import Favorites from "./pages/Dashboard/favorites.jsx";
-import Invoice from "./pages/Dashboard/invoice.jsx";
-import AccountSettings from "./pages/Dashboard/acct-settings.jsx";
-import Orders from "./pages/Dashboard/orders.jsx";
-import Quotes from "./pages/Dashboard/quotes.jsx";
-import TrackOrder from "./pages/Dashboard/track-order.jsx";
-import QuotePDFView from "./pages/Dashboard/PDFViews/Quotespdf.jsx"
-import Cart from "./pages/Cart.jsx";
-import CartCheckOut from "./pages/Dashboard/Cart/CartCheckOut.jsx";
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AppLayout } from './components/layout/AppLayout';
+import { AppRoutes } from './routes/AppRoutes';
+import ErrorBoundary from './components/common/ErrorBoundary';
+import { LoadingSpinner } from './components/common/LoadingSpinner';
 
+// Lazy load the PDF component
+const QuotePDFViewer = lazy(() => import('./pages/Dashboard/PDFViews/QuotePDFViewer'));
+
+// Component to handle conditional routing
 function AppContent() {
   const location = useLocation();
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
-
-  const validSidebarPaths = [
-  "/dashboard",
-  "/uploads",
-  "/favorites",
-  "/orders",
-  "/quotes",
-  "/invoice",
-  "/track-order",
-  "/acct-settings"
-];
-
-// Check if the current path is included in the list
-const shouldShowSidebar = validSidebarPaths.includes(location.pathname);
-
-
-  useEffect(() => {
-    // Automatically show sidebar when navigating to dashboard
-    if (location.pathname === "/dashboard" || location.pathname === "/uploads" || location.pathname === "/favorites" || location.pathname === "/orders" || location.pathname === "/quotes" || location.pathname === "/invoice" || location.pathname === "/track-order" || location.pathname === "/acct-settings") {
-      setIsSidebarVisible(true);
-    } else {
-      setIsSidebarVisible(false);
-    }
-  }, [location.pathname]);
-
- 
-
-  const showSidebar = () => {
-    setIsSidebarVisible(true);
-  };
-
-  const hideSidebar = () => {
-    setIsSidebarVisible(false);
-  };
-
+  
+  // Check if current path is a PDF route
+  const isPDFRoute = location.pathname.startsWith('/quote-pdf/');
+  
+  if (isPDFRoute) {
+    // Render PDF component without any layout
+    return (
+      <Suspense fallback={<LoadingSpinner size="large" className="min-h-screen" />}>
+        <Routes>
+          <Route path="/quote-pdf/:quoteId" element={<QuotePDFViewer />} />
+        </Routes>
+      </Suspense>
+    );
+  }
+  
+  // Render normal app with layout
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header onShowSidebar={showSidebar} />
-      <div className="flex flex-1">
-        {shouldShowSidebar && (
-          <Sidebar isVisible={isSidebarVisible} onHide={hideSidebar} />
-        )}
-        <main
-          className={`p-10 bg-gray-50 ${
-            shouldShowSidebar ? "flex-1" : "w-full"
-          }`}
-        >
-          <Routes>
-            
-            <Route path="/cart" element={<Cart />} />
-             <Route path="/cart-checkout" element={<CartCheckOut />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/uploads" element={<Uploads/>} />
-            <Route path="/favorites" element={<Favorites />} />
-            <Route path="/orders" element={<Orders />} />
-            <Route path="/quotes" element={<Quotes />} />
-            <Route path="/invoice" element={<Invoice />} />
-            <Route path="/track-order" element={<TrackOrder />} />
-            <Route path="/acct-settings" element={<AccountSettings />} />
-            <Route path="/quote-pdf/:quoteId" element={<QuotePDFView />} />
-          </Routes>
-        </main>
-      </div>
-    </div>
+    <AppLayout>
+      <AppRoutes />
+    </AppLayout>
   );
 }
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <ErrorBoundary>
+      <Router>
+        <AppContent />
+      </Router>
+    </ErrorBoundary>
   );
 }
 
