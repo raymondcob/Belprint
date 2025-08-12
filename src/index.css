@@ -1,12 +1,158 @@
 @import "tailwindcss";
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
 
+:root{
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Brand Colors */
+  --black: #282829;
+  --blue: #2aace2;
+  --orange: #f68b20;
+  --green: #d7df26;
+  --red: #eb1d42;
+  
+  /* Primary brand color */
+  --primary: var(--blue);
+  --primary-hover: #1e8bb8;
+  --secondary: var(--orange);
+  --accent: var(--green);
+  --danger: var(--red);
+
+
+}
+@theme{
+  --color-blue : #2aace2;
+}
 
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   background-color: #EAEEF2;
-  
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+#root {
+  margin: auto;
+}
+
+/* Animated Border Keyframes */
+@keyframes animatedBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes borderGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--blue), 0 0 10px var(--blue), 0 0 15px var(--blue);
+  }
+  50% {
+    box-shadow: 0 0 10px var(--orange), 0 0 20px var(--orange), 0 0 30px var(--orange);
+  }
+}
+
+/* Animated Border Classes */
+.animated-border {
+  position: relative;
+  background: linear-gradient(45deg, var(--blue), var(--orange), var(--green), var(--red));
+  background-size: 400% 400%;
+  animation: animatedBorder 3s ease infinite;
+  padding: 2px;
+  border-radius: 8px;
+}
+
+.animated-border-content {
+  background: white;
+  border-radius: 6px;
+  padding: inherit;
+}
+
+.animated-border-button {
+  position: relative;
+  background: linear-gradient(45deg, var(--blue), var(--orange), var(--green), var(--red));
+  background-size: 400% 400%;
+  animation: animatedBorder 3s ease infinite;
+  border: none;
+  border-radius: 8px;
+  padding: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.animated-border-button:hover {
+  animation-duration: 1s;
+  transform: scale(1.02);
+}
+
+.animated-border-button .button-content {
+  background: #080808;
+  border-radius: 6px;
+  padding: 12px 24px;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.animated-border-button:hover .button-content {
+  background: var(--blue);
+  color: white;
+}
+
+.glow-border {
+  animation: borderGlow 2s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+/* Brand Button Styles */
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: 2px solid var(--primary);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: white;
+  border: 2px solid var(--danger);
+  transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+  background: #c41e3a;
+  border-color: #c41e3a;
+  transform: translateY(-1px);
 }
 
 @keyframes bgAnimatedGradient {

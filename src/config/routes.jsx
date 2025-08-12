@@ -16,7 +16,6 @@ export const ROUTES = {
   BLOG: "/blog",
   ABOUT: "/about",
   CONTACT: "/contact",
-  CART: "/cart",
   CART_CHECKOUT: "/cart-checkout",
   DASHBOARD: "/dashboard",
   UPLOADS: "/uploads",

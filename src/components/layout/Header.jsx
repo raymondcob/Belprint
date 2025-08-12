@@ -11,12 +11,14 @@ import { CiMoneyBill } from "react-icons/ci";
 import { CiUser } from "react-icons/ci";
 import { CiMedal } from "react-icons/ci";
 import { FaTimes,FaShoppingCart } from "react-icons/fa";
+import CartModal from "../../components/Cart/CartModal";
 
 const Header = ({ onShowSidebar }) => {
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
+  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
   // Effect to lock scrolling when any modal is open
   useEffect(() => {
     if (isMobileMenuOpen || isAccountModalOpen) {
@@ -44,6 +46,12 @@ const Header = ({ onShowSidebar }) => {
     setIsAccountModalOpen(false);
     navigate("/dashboard");
   };
+
+  const toggleCartModal =  ()  => {
+    
+    setIsCartModalOpen(!isCartModalOpen);
+  }
+
 
   const modalPanelItems =[
     
@@ -109,14 +117,17 @@ const Header = ({ onShowSidebar }) => {
             </button>
           </li>
           <li className="block relative border-b border-gray-700">
-            <Link
-              to="/cart"
-              className="main-menu__link block p-5 text-white font-bold text-lg hover:bg-gray-800"
-              onClick={() => setIsMobileMenuOpen(false)}
+            <button
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                setIsCartModalOpen(true);
+              }}
+              className="main-menu__link block p-5 text-white font-bold text-lg hover:bg-gray-800 w-full text-left"
             >
               Cart
-            </Link>
+            </button>
           </li>
+        
         </ul>
       </div>
 
@@ -257,13 +268,16 @@ const Header = ({ onShowSidebar }) => {
               Account
             </a>
           </div>
+          <div className="relative">
+            <a
+              onClick={toggleCartModal}
+              className="font-bold uppercase text-white hover:text-gray-400 transition-colors tracking-widest cursor-pointer text-sm"
+              aria-expanded={isCartModalOpen}
+            >
+              Cart
+            </a>
+          </div>
 
-          <Link
-            to="/cart"
-            className="font-bold uppercase text-white hover:text-gray-400 transition-colors tracking-widest text-sm"
-          >
-            Cart
-          </Link>
         </nav>
       </header>
       <div className="bg-animated-gradient h-2 hidden md:block"></div>
@@ -350,29 +364,20 @@ const Header = ({ onShowSidebar }) => {
                 <span className="font-medium">Military Discount Benefit</span>
               </a>
             </li>
-            <li className="border-b border-gray-700">
-              <button
-                onClick={()=>navigate('/cart')}
-                className="flex items-center gap-4 px-3 py-3 lg:py-6 text-white hover:text-gray-500 hover:bg-opacity-10 hover:cursor-pointer rounded-md transition-colors w-full text-left"
-              >
-                <FaShoppingCart size={24} />
-                <span className="font-medium md:font-large">
-                  Cart
-                </span>
-              </button>
-            </li>
             <li>
               <a
                 className="flex flex-col items-center gap-2 px-3 py-3  text-white hover:text-red-400 transition-colors"
                 href="#"
               >
                 <span className="font-medium">Sign Out</span>
-                <span className="h-1 w-10 bg-white rounded "></span>
+                <span className="h-1 w-10 rounded animated-border"></span>
               </a>
             </li>
           </ul>
         </div>
       </div>
+
+      <CartModal isOpen={isCartModalOpen} onClose = {toggleCartModal} />
     </>
   );
 };

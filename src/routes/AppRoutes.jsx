@@ -9,7 +9,6 @@ const Shop = lazy(() => import('../pages/Shop'));
 const Blog = lazy(() => import('../pages/Blog'));
 const About = lazy(() => import('../pages/About'));
 const Contact = lazy(() => import('../pages/Contact'));
-const Cart = lazy(() => import('../pages/Cart'));
 const Dashboard = lazy(() => import('../pages/Dashboard/Dashboard'));
 const Uploads = lazy(() => import('../pages/Dashboard/uploads'));
 const Favorites = lazy(() => import('../pages/Dashboard/favorites'));
@@ -19,7 +18,7 @@ const Orders = lazy(() => import('../pages/Dashboard/orders'));
 const Quotes = lazy(() => import('../pages/Dashboard/quotes'));
 const TrackOrder = lazy(() => import('../pages/Dashboard/track-order'));
 
-const CartCheckOut = lazy(() => import('../pages/Dashboard/Cart/CartCheckOut'));
+const CartCheckOut = lazy(() => import('../components/Cart/CartCheckOut'));
 
 export const AppRoutes = () => (
   <Suspense fallback={<LoadingSpinner size="large" className="min-h-[400px]" />}>
@@ -30,7 +29,7 @@ export const AppRoutes = () => (
       <Route path={ROUTES.BLOG} element={<Blog />} />
       <Route path={ROUTES.ABOUT} element={<About />} />
       <Route path={ROUTES.CONTACT} element={<Contact />} />
-      <Route path={ROUTES.CART} element={<Cart />} />
+
       
       {/* Dashboard Routes */}
       <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
