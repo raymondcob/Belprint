@@ -38,32 +38,11 @@ const initialQuoteData = [
   },
 ];
 
-// Sub-component for the nested items table
-const ExpandedQuoteItems = ({ items}) => {
 
-
-  const itemColumns = [
-
-    { name: '#', selector: row => row.id, width: '60px' },
-    { name: 'Qty', selector: row => row.qty, width: '80px' },
-    { name: 'Description', selector: row => row.description, grow: 2 },
-    { name: 'Size', selector: row => row.size },
-    { name: 'Unit Cost', selector: row => `$${(row.unitCost || 0).toFixed(2)}` },
-  ];
-  return (
-    <DataTable
-      columns={itemColumns}
-      data={items}
-      customStyles={{ headRow: { style: { backgroundColor: '#f1f5f9' } }, rows: { style: { fontSize: '0.95rem' } }}}
-      noHeader
-    />
-  );
-};
 
 // Component for the expanded row content (your design)
 const ExpandedComponent = ({ data }) => {
-  const navigate = useNavigate(); // Initialize useNavigate inside the component
-
+  const navigate = useNavigate(); 
 
   const componentRef = useRef();
 
@@ -84,12 +63,10 @@ const ExpandedComponent = ({ data }) => {
           </div>
           
         </div>
-        <ExpandedQuoteItems
-          items={data.items}
-        />
+
         <div className="flex justify-end mt-4"> {/* Added margin top for spacing */}
          <button
-            className=' text-red-600 flex items-center justify-center gap-2 px-4 py-2 rounded-lg border-2 border-red-600 font-medium hover:bg-red-600 hover:text-white transition-colors hover:cursor-pointer'
+            className=' text-blue-600 flex items-center justify-center gap-2 px-4 py-2 rounded-lg border-2 border-blue-600 font-medium hover:bg-blue-600 hover:text-white transition-colors hover:cursor-pointer'
             onClick={() => window.open(`/quote-pdf/${data.id}`, '_blank')} 
          >
                 <FaPrint /> View PDF
@@ -118,7 +95,7 @@ export default function Quotes() {
   ];
 
   return (
-    <main className="w-full py-4 px-8">
+    <main className="w-full p-10 ">
       <h2 className="text-4xl font-bold mb-4">Quotes</h2>
       <div className="relative w-full max-w-sm mb-6 mt-10">
         <label htmlFor="search-input" className="sr-only">Search</label>

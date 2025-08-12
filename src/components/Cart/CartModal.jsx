@@ -5,6 +5,7 @@ import { IoBagCheckOutline } from "react-icons/io5";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FaTimes } from "react-icons/fa";
 import Shirt from "../../assets/shirtsample.jpg";
+import Carousel from "../common/Carousel";
 
 const sizes = ["Small", "Medium", "Large", "X-Large", "XX-Large"];
 
@@ -105,8 +106,8 @@ const CartModal = ({ isOpen, onClose }) => {
             {/* Cart Items List */}
             <div className=" w-full  rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-2xl p-6">
               <div className="hidden md:flex items-center text-gray-500 font-semibold border-b pb-3">
-                <div className="w-[45%]">Product</div>
-                <div className="w-[55%] flex justify-between items-center text-center px-4">
+                <div className="w-[40%]">Product</div>
+                <div className="w-[60%] flex justify-between items-center text-center px-4">
                   <div className="w-1/4">Price</div>
                   <div className="w-1/4">Print Size</div>
                   <div className="w-1/4">Quantity</div>
@@ -117,14 +118,10 @@ const CartModal = ({ isOpen, onClose }) => {
               {cartItems.map((item) => (
                 <div
                   key={item.id}
-                  className="flex flex-col md:flex-row items-center rouned-lg bg-black/30 mt-4 gap-8 border rounded-lg border-gray-800 p-6"
+                  className="flex flex-col md:flex-row items-center rouned-lg bg-black/30 mt-4 border rounded-lg border-gray-800 p-6"
                 >
-                  <div className="w-full md:w-[45%] flex items-center gap-4 ">
-                    <img
-                      src={Shirt}
-                      alt="Shirt"
-                      className="w-24 h-24 rounded-md object-cover"
-                    />
+                  <div className="w-full md:w-[40%] flex items-center gap-4 ">
+                    <Carousel/>
                     <div className="flex flex-col">
                       <h4 className="font-bold text-lg">{item.product}</h4>
                       <p className="text-gray-500 text-sm">
@@ -160,7 +157,7 @@ const CartModal = ({ isOpen, onClose }) => {
                       </button>
                     </div>
                   </div>
-                  <div className="w-full md:w-[55%] flex flex-col md:flex-row justify-between items-center text-center mt-4 md:mt-0 px-4">
+                  <div className="w-full md:w-[60%] flex flex-col md:flex-row justify-between items-center text-center mt-4 md:mt-0 px-4">
                     <div className="w-full md:w-1/4 my-2 md:my-0">
                       <span className="md:hidden font-semibold">Price: </span>
                       <span className="font-semibold">
@@ -200,7 +197,7 @@ const CartModal = ({ isOpen, onClose }) => {
                 Order Summary
               </h3>
               <div className="flex flex-col">
-                <div className="flex justify-between border-t-2 border-gray-200 py-4">
+                <div className="flex justify-between border-t-1 border-gray-500 py-4">
                   <h4 className="text-lg font-medium">Subtotal</h4>
                   <p className="font-bold text-lg">${subtotal.toFixed(2)}</p>
                 </div>
@@ -208,7 +205,7 @@ const CartModal = ({ isOpen, onClose }) => {
                   <h4 className="text-lg font-medium">GST (13%)</h4>
                   <p className="font-bold text-lg">${gst.toFixed(2)}</p>
                 </div>
-                <div className="flex justify-between border-t-2 border-gray-200 pt-4">
+                <div className="flex justify-between border-t-1 border-gray-500 pt-4">
                   <h4 className="text-xl font-bold">Total (GST INCLUDED)</h4>
                   <p className="font-bold text-xl">${total.toFixed(2)}</p>
                 </div>

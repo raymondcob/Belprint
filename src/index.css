@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
 
+
+
 :root{
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -69,7 +71,7 @@ body {
   background: linear-gradient(45deg, var(--blue), var(--orange), var(--green), var(--red));
   background-size: 400% 400%;
   animation: animatedBorder 3s ease infinite;
-  padding: 2px;
+  padding: 3px;
   border-radius: 8px;
 }
 

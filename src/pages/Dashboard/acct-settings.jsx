@@ -51,6 +51,28 @@ export default function AccountSettings() {
               defaultValue="user@example.com"
             />
           </div>
+          <div>
+            <label htmlFor="tel" className="mb-1 block text-sm font-medium text-gray-700">
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              id="tel"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+              placeholder='Phone Number'
+            />
+          </div>
+          <div>
+            <label htmlFor="text" className="mb-1 block text-sm font-medium text-gray-700">
+              Shipping Address
+            </label>
+            <input
+              type="text"
+              id="sippingaddress"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+              placeholder='Enter Shipping Adress'
+            />
+          </div>
           <div className='grid grid-cols-2 gap-2 '>
 
             <div>

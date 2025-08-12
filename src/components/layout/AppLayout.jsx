@@ -13,7 +13,7 @@ export const AppLayout = ({ children }) => {
         {shouldShowSidebar && (
           <Sidebar isVisible={isSidebarVisible} onHide={hideSidebar} />
         )}
-        <main className={`p-10 bg-gray-50 ${shouldShowSidebar ? "flex-1" : "w-full"}`}>
+        <main className={`bg-gray-50 ${shouldShowSidebar ? "flex-1" : "w-full"}`}>
           {children}
         </main>
       </div>

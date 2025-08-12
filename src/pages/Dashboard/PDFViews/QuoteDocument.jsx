@@ -1,6 +1,5 @@
-import React from 'react';
 import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer';
-import { BELPRINT_LOGO_BASE64 } from '../../../utils/logoBase64';
+import Logo from "../../../assets/BELPRINT-LOGO.png";
 
 // Create styles for the PDF
 const styles = StyleSheet.create({
@@ -12,7 +11,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     marginBottom: 20,
     borderBottom: '1px solid #3b82f6', // Blue border
     paddingBottom: 10,
@@ -86,6 +85,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: 'flex-end',
     width: '40%',
+    border: '2px solid #F3F4F6 ' ,
+    padding: '8px',
+    borderRadius : '10px'
   },
   totalRow: {
     flexDirection: 'row',
@@ -147,9 +149,10 @@ const QuoteDocument = ({ quoteData }) => {
     const total = subtotal + gst;
 
     return (
-        <Document>
+        <Document title={`${quoteData.id}`}>
             <Page size="A4" style={styles.page}>
                 <View style={styles.header}>
+                      <Image src={Logo} style={{ width: 85, height: 'auto' }} /> 
                     <View>
                         <Text style={styles.quoteTitle}>Quote {quoteData.id}</Text>
                         <Text style={styles.quoteInfo}>Date: {quoteData.date}</Text>
@@ -168,7 +171,6 @@ const QuoteDocument = ({ quoteData }) => {
                          <Text style={[styles.quoteInfo, {textAlign: 'right'}]}>{quoteData.email}</Text>
                          <Text style={[styles.quoteInfo, {textAlign: 'right'}]}>{quoteData.location}</Text>
                     </View>
-                      <Image src={BELPRINT_LOGO_BASE64} style={{ width: 80, height: 'auto' }} /> 
                 </View>
 
                 <Text style={styles.sectionTitle}>Items:</Text>

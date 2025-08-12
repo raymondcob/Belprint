@@ -1,8 +1,14 @@
 import Shirt from "../../assets/shirtsample.jpg";
 import { useNavigate } from 'react-router-dom'; 
+import React, {useState} from "react"
 
 const Dashboard = () => {
+const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
+const toggleCartModal =  ()  => {
+    
+    setIsCartModalOpen(!isCartModalOpen);
+  }
   const navigate = useNavigate();
   const cartItems=[
   {
@@ -22,7 +28,7 @@ const Dashboard = () => {
    
 ]
   return (
-    <div className="max-w-full ">
+    <div className="max-w-full p-10 ">
       <h1 className="text-3xl font-bold text-gray-900 mb-14 text-center md:text-start mt-4 ">
         Welcome Back , User
       </h1>
@@ -54,7 +60,7 @@ const Dashboard = () => {
           </div>
           <div className="flex justify-end mt-4"> {/* Added margin top for spacing */}
                   <button
-                      className=' text-red-600 flex items-center justify-center gap-2 px-4 py-2 rounded-lg border-2 border-red-600 font-medium hover:bg-red-600 hover:text-white transition-colors hover:cursor-pointer'
+                      className=' text-blue-600 flex items-center justify-center gap-2 px-4 py-2 rounded-lg border-2 border-blue-600 font-medium hover:bg-blue-600 hover:text-white transition-colors hover:cursor-pointer'
                       onClick={()=>navigate("/cart")}
                    >
                           View Cart

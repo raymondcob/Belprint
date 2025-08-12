@@ -60,7 +60,7 @@ const FavoriteCard = ({ item }) => {
         <p className="text-sm text-gray-600">{item.description}</p>
       </div>
       <div className="mt-4 flex items-center justify-between">
-        <button className="flex-1 rounded-full bg-red-500 py-2 text-lg font-medium text-white shadow-md transition-colors duration-200 hover:bg-red-700 hover:cursor-pointer">
+        <button className="flex-1 rounded-full  bg-blue-500 py-2 text-lg font-medium text-white shadow-md transition-colors duration-200 hover:bg-blue-700 hover:cursor-pointer">
           Add to Cart
         </button>
       </div>
@@ -71,11 +71,11 @@ const FavoriteCard = ({ item }) => {
 export default function Favorites() {
   return (
     <div >
-      <h1 className="mb-14 text-center md:text-start text-3xl md:text-4xl font-bold text-gray-900">
+      <h1 className="mb-14 text-center md:text-start text-3xl md:text-4xl font-bold text-gray-900 p-6 ml-5">
         Your Favorites
       </h1>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-6">
         {favoriteItems.map((item) => (
           <FavoriteCard key={item.id} item={item} />
         ))}

@@ -86,7 +86,7 @@ const ExpandedComponent = ({ data }) => {
   };
 
   return (
-    <div className="p-4 rounded-xl bg-gray-100 flex justify-center">
+    <div className="p-10 rounded-xl bg-gray-100 flex justify-center">
       <div className="w-full max-w-3xl rounded-lg bg-white p-6 shadow-lg border-2 border-gray-300">
         {/* Header Section */}
         <div className="mb-4 flex items-center justify-between border-b border-gray-300 pb-4">
@@ -153,9 +153,10 @@ const ExpandedComponent = ({ data }) => {
         {/* Print Button */}
         <div className="text-right mt-6">
           <button
-            className="flex items-center justify-center gap-3 px-6 py-3 rounded-lg border-2 text-red-500 border-red-500 font-medium hover:bg-red-600 hover:text-white transition-colors hover:cursor-pointer"
-            onClick={() => window.print()}
+            className="flex items-center justify-center gap-3 p-3 rounded-lg border-2 text-blue-500 border-blue-500 font-medium hover:bg-blue-600 hover:text-white transition-colors hover:cursor-pointer"
+            onClick={() => window.open(`/invoice-pdf/${data.id}`, '_blank')} 
           >
+            Print PDF
           </button>
         </div>
       </div>
@@ -189,7 +190,7 @@ export default function Invoice() {
   ];
 
   return (
-    <div className="mx-auto max-w-full p-4">
+    <div className="mx-auto max-w-full p-10">
       <h1 className="mb-8 text-3xl md:text-4xl  font-bold text-gray-900 text-start  ">Invoices</h1>
       
       <div className="relative w-full max-w-sm mb-6 mt-10">

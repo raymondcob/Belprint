@@ -125,7 +125,7 @@ const customStyles = {
 
 export default function OrderHistory() {
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+    <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 p-10">
       <div className="p-6">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">Order History</h2>
         <DataTable

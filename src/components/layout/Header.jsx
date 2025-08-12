@@ -5,12 +5,8 @@ import top1 from "../../assets/icons/top-1.svg";
 import top2 from "../../assets/icons/top-2.svg";
 import { RxDashboard, RxFontSize } from "react-icons/rx";
 import { TbHistory } from "react-icons/tb";
-import { IoGiftOutline } from "react-icons/io5";
-import { CiCreditCard1 } from "react-icons/ci";
-import { CiMoneyBill } from "react-icons/ci";
 import { CiUser } from "react-icons/ci";
-import { CiMedal } from "react-icons/ci";
-import { FaTimes,FaShoppingCart } from "react-icons/fa";
+import { FaTimes,FaFileInvoice, FaTruck} from "react-icons/fa";
 import CartModal from "../../components/Cart/CartModal";
 
 const Header = ({ onShowSidebar }) => {
@@ -69,6 +65,15 @@ const Header = ({ onShowSidebar }) => {
           }`}
       >
         <ul className="list-none p-0 my-24">
+          <li className="block relative border-b border-gray-700">
+            <Link
+              to="/home"
+              className="main-menu__link block p-5 text-white font-bold text-lg hover:bg-gray-800"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Home
+            </Link>
+          </li>
           <li className="block relative border-b border-gray-700">
             <Link
               to="/blog"
@@ -232,7 +237,13 @@ const Header = ({ onShowSidebar }) => {
         <hr className="hidden md:block border-t-[2.5px] border-white mt-4" />
 
         {/* Bottom Nav (Desktop Only) */}
-        <nav className="hidden md:grid grid-cols-7 gap-6 py-4 pb-6 ml-36 text-right">
+        <nav className="hidden md:grid grid-cols-7 gap-6 py-4 pb-6 mt-5 ml-20 ">
+          <Link
+            to="/home"
+            className="font-bold uppercase text-white hover:text-gray-400 transition-colors tracking-widest text-sm"
+          >
+            Home
+          </Link>
           <Link
             to="/blog"
             className="font-bold uppercase text-white hover:text-gray-400 transition-colors tracking-widest text-sm"
@@ -284,7 +295,7 @@ const Header = ({ onShowSidebar }) => {
 
       {/* The Account Modal/Panel */}
       <div
-        className={`fixed top-0 right-0 z-[10000] h-screen w-[75%] md:w-[20%] bg-black/90 text-white shadow-lg transform transition-transform duration-500 ease-in-out
+        className={`fixed top-0 right-0 z-[10000] h-screen w-[75%] md:w-[23%] bg-black/90 text-white shadow-lg transform transition-transform duration-500 ease-in-out
           ${isAccountModalOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="relative p-2">
@@ -298,8 +309,8 @@ const Header = ({ onShowSidebar }) => {
           <h6 className="text-center text-xl font-semibold mt-6 mb-6">
             Welcome, Guest
           </h6>
-          <ul className="list-none text-left">
-            <li className="border-b border-t border-gray-700 hover:text-gray-500 ">
+          <ul className="list-none text-left ">
+            <li className="border-b border-t border-gray-700 hover:text-gray-500 p-3 ">
               <button
                 onClick={handleDashboardClick}
                 className="flex items-center gap-4 px-3 py-3 lg:py-6 text-white hover:text-gray-500 hover:bg-opacity-10 hover:cursor-pointer rounded-md transition-colors w-full text-left"
@@ -310,43 +321,34 @@ const Header = ({ onShowSidebar }) => {
                 </span>
               </button>
             </li>
-            <li className="border-b border-gray-700">
+            <li className="border-b border-gray-700 p-3 ">
               <a
                 className="flex items-center gap-4 px-3 py-3 lg:py-6 text-white hover:text-gray-500 hover:bg-opacity-10 rounded-md transition-colors"
                 href="/pages/PurchaseHistory.html"
               >
                 <TbHistory size={24} />
-                <span className="font-medium">Purchase History</span>
+                <span className="font-medium">Order History</span>
               </a>
             </li>
-            <li className="border-b border-gray-700">
-              <a
-                className="flex items-center gap-4 px-3 py-3 lg:py-6 text-white hover:text-gray-500 hover:bg-opacity-10 rounded-md transition-colors"
-                href="/pages/RewardsHub.html"
-              >
-                <IoGiftOutline size={24} />
-                <span className="font-medium">Rewards Hub</span>
-              </a>
-            </li>
-            <li className="border-b border-gray-700">
+            <li className="border-b border-gray-700 p-3 ">
               <a
                 className="flex items-center gap-4 px-3 py-3 lg:py-6 text-white hover:text-gray-500 hover:bg-opacity-10 rounded-md transition-colors"
                 href="/pages/Cards&Accounts.html"
               >
-                <CiCreditCard1 size={24} />
-                <span className="font-medium">Cards & Accounts</span>
+                <FaFileInvoice size={24} />
+                <span className="font-medium">Invoice</span>
               </a>
             </li>
-            <li className="border-b border-gray-700">
+            <li className="border-b border-gray-700 p-3 ">
               <a
                 className="flex items-center gap-4 px-3 py-3 lg:py-6 text-white hover:text-gray-500 hover:bg-opacity-10 rounded-md transition-colors"
                 href="/pages/PayCreditCardBill.html"
               >
-                <CiMoneyBill size={24} />
-                <span className="font-medium">Pay Credit Card Bill</span>
+                <FaTruck size={24} />
+                <span className="font-medium">Track Order</span>
               </a>
             </li>
-            <li className="border-b border-gray-700">
+            <li className="border-b border-gray-700 p-3 ">
               <a
                 className="flex items-center gap-4 px-3 py-3 lg:py-6 text-white hover:text-gray-500 hover:bg-opacity-10 rounded-md transition-colors"
                 href="/pages/Profile.html"
@@ -355,22 +357,13 @@ const Header = ({ onShowSidebar }) => {
                 <span className="font-medium">Profile</span>
               </a>
             </li>
-            <li className="border-b border-gray-700">
-              <a
-                className="flex items-center gap-4 px-3 py-3 lg:py-6 text-white hover:text-gray-500 hover:bg-opacity-10 rounded-md transition-colors"
-                href="/pages/MilitaryDiscountBenefit.html"
-              >
-                <CiMedal size={24} />
-                <span className="font-medium">Military Discount Benefit</span>
-              </a>
-            </li>
             <li>
               <a
-                className="flex flex-col items-center gap-2 px-3 py-3  text-white hover:text-red-400 transition-colors"
+                className="flex flex-col items-center gap-2 px-3 py-3  text-white hover:text-red-400 transition-colors mt-5"
                 href="#"
               >
                 <span className="font-medium">Sign Out</span>
-                <span className="h-1 w-10 rounded animated-border"></span>
+                <span className="h-1 w-12 animated-border"></span>
               </a>
             </li>
           </ul>

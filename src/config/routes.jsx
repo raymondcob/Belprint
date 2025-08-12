@@ -17,6 +17,7 @@ export const ROUTES = {
   ABOUT: "/about",
   CONTACT: "/contact",
   CART_CHECKOUT: "/cart-checkout",
+  TRACK_ORDER_INFO:"/order/:invoiceId",
   DASHBOARD: "/dashboard",
   UPLOADS: "/uploads",
   FAVORITES: "/favorites",

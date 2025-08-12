@@ -19,10 +19,12 @@ const Quotes = lazy(() => import('../pages/Dashboard/quotes'));
 const TrackOrder = lazy(() => import('../pages/Dashboard/track-order'));
 
 const CartCheckOut = lazy(() => import('../components/Cart/CartCheckOut'));
+const TrackOrderInfo = lazy(() => import('../pages/TrackOrderInfo'));
 
 export const AppRoutes = () => (
   <Suspense fallback={<LoadingSpinner size="large" className="min-h-[400px]" />}>
     <Routes>
+
       {/* Public Routes */}
       <Route path={ROUTES.HOME} element={<Home />} />
       <Route path={ROUTES.SHOP} element={<Shop />} />
@@ -39,6 +41,7 @@ export const AppRoutes = () => (
       <Route path={ROUTES.QUOTES} element={<Quotes />} />
       <Route path={ROUTES.INVOICE} element={<Invoice />} />
       <Route path={ROUTES.TRACK_ORDER} element={<TrackOrder />} />
+      <Route path={ROUTES.TRACK_ORDER_INFO} element={<TrackOrderInfo />} />
       <Route path={ROUTES.ACCOUNT_SETTINGS} element={<AccountSettings />} />
       <Route path={ROUTES.CART_CHECKOUT} element={<CartCheckOut />} />
 

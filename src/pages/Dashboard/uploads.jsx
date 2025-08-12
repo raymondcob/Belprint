@@ -90,9 +90,9 @@ const customStyles = {
 export default function Uploads() {
   return (
     <>
-    <h2 className="text-4xl font-bold text-gray-900 text-center md:text-start w-full mt-5">My Uploads</h2>
+    <h2 className="text-4xl font-bold text-gray-900 text-center md:text-start w-full mt-7 ml-7">My Uploads</h2>
       
-    <div className="container mx-auto px-4 py-8 flex flex-col content-center justify-center w-full">
+    <div className="container mx-auto px-4 py-8 flex flex-col content-center justify-center w-full p-3">
       
       
       {/* Upload Box Section */}
@@ -103,7 +103,7 @@ export default function Uploads() {
                 <path d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" fill-rule="evenodd" />
               </svg>
               <div class="mt-4 flex text-sm/6 text-gray-600">
-                <label for="file-upload" class="relative cursor-pointer rounded-md bg-transparent font-semibold text-red-500 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-red-600 hover:text-red-500">
+                <label for="file-upload" class="relative cursor-pointer rounded-md bg-transparent font-semibold text-blue-500 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-blue-600 hover:text-blue-500">
                   <span>Upload a file</span>
                   <input id="file-upload" type="file" name="file-upload" class="sr-only" />
                 </label>
