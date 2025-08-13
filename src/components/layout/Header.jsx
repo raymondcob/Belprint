@@ -145,7 +145,7 @@ const Header = ({ onShowSidebar }) => {
       )}
 
       {/* Main Header */}
-      <header className="bg-black text-white relative px-4 sm:px-12">
+      <header className="bg-black/90 text-white relative px-4 sm:px-12">
         {/* Mobile Hamburger Button */}
         <div className="absolute top-5 right-6 z-[9999] md:hidden">
           <button
@@ -186,8 +186,8 @@ const Header = ({ onShowSidebar }) => {
         </Link>
 
         {/* Top Nav (Desktop Only) */}
-        <nav className="hidden md:flex md:justify-end items-center pt-5">
-          <div className="flex gap-6 justify-end items-center">
+        <nav className="hidden md:flex md:justify-end items-center pt-5 ">
+          <div className="flex gap-6 justify-end items-cente">
             {/* Contact Info */}
             <div className="flex items-center gap-2 text-base text-white">
               <img src={top1} alt="Location Icon" className="w-4 h-4" />

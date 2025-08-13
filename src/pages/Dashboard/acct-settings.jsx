@@ -70,7 +70,7 @@ export default function AccountSettings() {
               type="text"
               id="sippingaddress"
               className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
-              placeholder='Enter Shipping Adress'
+              placeholder='Enter Shipping Address'
             />
           </div>
           <div className='grid grid-cols-2 gap-2 '>
@@ -83,7 +83,7 @@ export default function AccountSettings() {
               type="password"
               id="password"
               className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
-              defaultValue="user@example.com"
+            
             />
             </div>
             <div>
@@ -94,7 +94,7 @@ export default function AccountSettings() {
               type="password"
               id="password"
               className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
-              defaultValue="user@example.com"
+              
             />
             </div>
              

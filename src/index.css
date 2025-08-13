@@ -1,5 +1,8 @@
 @import "tailwindcss";
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css');
 
 
 
@@ -173,4 +176,18 @@ body {
   background-image: linear-gradient(60deg, #2aace2, #d7df26, #f68b20, #ec1d42);
   background-size: 200% 200%;
   animation: bgAnimatedGradient 5s infinite linear;
+}
+
+/* Trust Cues Slider Styles */
+.trust-cues-slider .slick-track {
+  display: flex;
+  align-items: center;
+}
+
+.trust-cues-slider .slick-slide {
+  height: auto;
+}
+
+.trust-cues-slider .slick-slide > div {
+  height: 100%;
 }

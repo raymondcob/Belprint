@@ -57,7 +57,7 @@ const toggleCartModal =  ()  => {
                   <p className="text-sm text-gray-500">Color: {item.color}</p>
                   <p className="text-sm text-gray-500">Print: {item.printon}</p>
                 </div>
-                <h4 className="font-bold text-gray-900">${item.total.toFixed(2)}</h4>
+                <h4 className="font-bold md:text-xl text-lg text-gray-700">${item.total.toFixed(2)}</h4>
               </div>
             ))}
           </div>
