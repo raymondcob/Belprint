@@ -26,5 +26,8 @@ export const ROUTES = {
   INVOICE: "/invoice",
   TRACK_ORDER: "/track-order",
   ACCOUNT_SETTINGS: "/acct-settings",
-  QUOTE_PDF: "/quote-pdf"
+  QUOTE_PDF: "/quote-pdf",
+  INVOICE_PDF : "/invoice-pdf"
+
+
 };

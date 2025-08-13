@@ -40,8 +40,9 @@ const initialQuoteData = [
 
 
 
-// Component for the expanded row content (your design)
+
 const ExpandedComponent = ({ data }) => {
+
   const navigate = useNavigate(); 
 
   const componentRef = useRef();
@@ -51,18 +52,46 @@ const ExpandedComponent = ({ data }) => {
     documentTitle: `${data.customer} - ${data.id}`,
   });
 
+   const expandedQouteCols = [
+       {name: "Item",selector: row => row.description, sortable: true,},
+       {name: "Qty",selector: row => row.qty, sortable: true,center: true},
+       {name: "Size",selector: row => row.size, sortable: true,center: true},
+       {name: "UnitCost",selector: row => row.unitCost, sortable: true,center: true},
+   ]
+   const customStyles = {
+    headCells: {
+      style: {
+        backgroundColor: "#f1f5f9",
+        fontSize: "0.9rem",
+        fontWeight: "bold",
+        color: "#4b5563",
+      },
+    },
+    cells: {
+      style: {
+        fontSize: "0.8rem",
+      },
+    },
+  };
+
   return (
     <div className="p-4 rounded-xl bg-gray-100 flex justify-center" >
       <div ref={componentRef} className="w-full max-w-4xl rounded-lg bg-white p-6 shadow-lg border-2 border-gray-300">
+
+        {/*Header*/}
         <div className="flex justify-between items-start mb-6 border-b border-blue-300">
           <img src={BelprintLogoBlack} alt="Belprint Logo" className="w-32 h-auto" />
           <div>
             <h1 className="text-2xl font-bold text-gray-800">Quote <span className='text-red-500'>{data.id}</span></h1>
-            <p className="text-sm text-gray-600 mt-1">Date: {data.date}</p>
-            <p className="text-sm font-semibold text-red-500">Wanted Date: {data.wantedDate}</p>
           </div>
-          
         </div>
+        {/*Main Content Table */}
+        <DataTable
+          columns={expandedQouteCols}
+          data={data.items}
+          customStyles={customStyles}
+
+          />
 
         <div className="flex justify-end mt-4"> {/* Added margin top for spacing */}
          <button

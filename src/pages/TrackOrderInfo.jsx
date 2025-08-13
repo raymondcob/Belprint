@@ -15,10 +15,9 @@ const OrderDetailsPage = () => {
           <FaArrowLeft className="mr-2" /> Back to Orders
         </Link>
         <div className="bg-white p-8 rounded-xl shadow-lg">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">
+          <h1 className="text-4xl font-bold text-gray-800 mb-10">
             Order: <span className="text-blue-600">{order.invoiceId}</span>
           </h1>
-          <p className="text-xl text-gray-600 mb-6">Customer: {order.customer}</p>
 
           <div className="relative border-l-2 border-gray-200 pl-8">
             <div

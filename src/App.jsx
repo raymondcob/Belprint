@@ -7,13 +7,14 @@ import { LoadingSpinner } from './components/common/LoadingSpinner';
 
 // Lazy load the PDF component
 const QuotePDFViewer = lazy(() => import('./pages/Dashboard/PDFViews/QuotePDFViewer'));
+const InvoicePDFViewer = lazy(() => import('./pages/Dashboard/PDFViews/InvoicePDFViewer'));
 
 // Component to handle conditional routing
 function AppContent() {
   const location = useLocation();
   
   // Check if current path is a PDF route
-  const isPDFRoute = location.pathname.startsWith('/quote-pdf/');
+  const isPDFRoute = location.pathname.startsWith('/quote-pdf/') || location.pathname.startsWith('/invoice-pdf/');
   
   if (isPDFRoute) {
     // Render PDF component without any layout
@@ -21,6 +22,7 @@ function AppContent() {
       <Suspense fallback={<LoadingSpinner size="large" className="min-h-screen" />}>
         <Routes>
           <Route path="/quote-pdf/:quoteId" element={<QuotePDFViewer />} />
+          <Route path="/invoice-pdf/:invoiceId" element={<InvoicePDFViewer />} />
         </Routes>
       </Suspense>
     );

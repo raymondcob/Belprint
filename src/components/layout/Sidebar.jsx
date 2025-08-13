@@ -56,7 +56,7 @@ const Sidebar = ({ isVisible, onHide }) => {
               ? "translate-x-0"
               : "-translate-x-full lg:translate-x-0"
           }
-          ${isCollapsed ? "w-16" : "w-64"}
+          ${isCollapsed ? "w-16" : "w-80"}
           lg:block
         `}
       >

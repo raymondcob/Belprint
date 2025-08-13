@@ -90,9 +90,9 @@ const customStyles = {
 export default function Uploads() {
   return (
     <>
-    <h2 className="text-4xl font-bold text-gray-900 text-center md:text-start w-full mt-7 ml-7">My Uploads</h2>
+    <h2 className="text-4xl font-bold text-gray-900 text-center md:text-start  mt-7 ml-7">My Uploads</h2>
       
-    <div className="container mx-auto px-4 py-8 flex flex-col content-center justify-center w-full p-3">
+    <div className="container mx-auto px-4 py-8 flex flex-col content-center justify-center w-full ">
       
       
       {/* Upload Box Section */}
