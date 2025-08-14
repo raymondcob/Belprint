@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';
 import { ROUTES } from '../config/routes';
 
+
 // Lazy load components for better performance
 const Home = lazy(() => import('../pages/Home'));
 const Shop = lazy(() => import('../pages/Shop'));
@@ -20,6 +21,7 @@ const TrackOrder = lazy(() => import('../pages/Dashboard/track-order'));
 
 const CartCheckOut = lazy(() => import('../components/Cart/CartCheckOut'));
 const TrackOrderInfo = lazy(() => import('../pages/TrackOrderInfo'));
+const QuoteInfo = lazy(()=>import('../pages/QuoteInfo'));
 
 export const AppRoutes = () => (
   <Suspense fallback={<LoadingSpinner size="large" className="min-h-[400px]" />}>
@@ -42,6 +44,7 @@ export const AppRoutes = () => (
       <Route path={ROUTES.INVOICE} element={<Invoice />} />
       <Route path={ROUTES.TRACK_ORDER} element={<TrackOrder />} />
       <Route path={ROUTES.TRACK_ORDER_INFO} element={<TrackOrderInfo />} />
+      <Route path={ROUTES.QUOTE_INFO} element={<QuoteInfo />} />
       <Route path={ROUTES.ACCOUNT_SETTINGS} element={<AccountSettings />} />
       <Route path={ROUTES.CART_CHECKOUT} element={<CartCheckOut />} />
 

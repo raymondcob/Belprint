@@ -101,7 +101,7 @@ const CartModal = ({ isOpen, onClose }) => {
           </h3>
         </div>
         {/* Main Cart Content */}
-        <div className="flex flex-col  w-full px-4 py-6 text-white ">
+        <div className="flex flex-col  w-full px-4 py-6 text-white overflow-y-auto ">
           <div className="flex flex-col w-full gap-6">
             {/* Cart Items List */}
             <div className=" w-full  rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-2xl p-6">

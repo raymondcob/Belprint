@@ -34,7 +34,7 @@ export default function Hero() {
               Printed. Fast.
             </GradientText>
             
-            <DescriptionText className="mb-8 lg:mb-12 text-lg lg:text-xl text-gray-600">
+            <DescriptionText className="mb-8 lg:mb-12 text-lg lg:text-2xl text-gray-600 p-4">
               We bring your ideas to life with vibrant, professional prints, delivered with speed and precision.
             </DescriptionText>
             

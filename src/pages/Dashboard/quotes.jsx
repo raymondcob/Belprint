@@ -14,12 +14,11 @@ const initialQuoteData = [
     customer: 'San Pedro High school',
     email: 'secretary@sphs.edu.bz',
     location: 'San Pedro Town',
-    contact: '+501-628-8081',
+    contact: '+(501) 628-8081',
     notes: 'Full Payment Required. Production Time 2-3 days',
-    paymentDetails: 'DEPOSITS: BELPRINT LTD. GST: 12.5% TAX INCLUDED. BELIZE BANK A/C #: 25294201012000',
     items: [
-      { id: 1, qty: 4, description: 'Double Sided Signs PVC, Matte Vinyl', size: '3 ft (W) X 3 ft (L)', unitCost: 47.50 },
-      { id: 2, qty: 3, description: 'Double Sided Signs PVC, Alum Bond', size: '2 ft (W) X 2 ft (L)', unitCost: 45.00 },
+      { id: 1, qty: 4, description: 'Double Sided Signs PVC, Matte Vinyl', size: '3 ft (W) X 3 ft (L)', unitCost: 47.50, },
+      { id: 2, qty: 3, description: 'Double Sided Signs PVC, Alum Bond', size: '2 ft (W) X 2 ft (L)', unitCost: 45.00 , },
     ],
   },
   {
@@ -31,7 +30,6 @@ const initialQuoteData = [
     location: 'Belize City',
     contact: '+501-227-7083',
     notes: 'Please provide official PO.',
-    paymentDetails: 'DEPOSITS: BELPRINT LTD. GST: 12.5% TAX INCLUDED. BELIZE BANK A/C #: 25294201012000',
     items: [
       { id: 1, qty: 1, description: 'Large Glossy Banner', size: '10 ft (W) X 5 ft (L)', unitCost: 150.00 },
     ],
@@ -79,8 +77,7 @@ const ExpandedComponent = ({ data }) => {
       <div ref={componentRef} className="w-full max-w-4xl rounded-lg bg-white p-6 shadow-lg border-2 border-gray-300">
 
         {/*Header*/}
-        <div className="flex justify-between items-start mb-6 border-b border-blue-300">
-          <img src={BelprintLogoBlack} alt="Belprint Logo" className="w-32 h-auto" />
+        <div className="flex justify-between items-start mb-6 p-3 border-b border-blue-300">
           <div>
             <h1 className="text-2xl font-bold text-gray-800">Quote <span className='text-red-500'>{data.id}</span></h1>
           </div>
@@ -94,12 +91,7 @@ const ExpandedComponent = ({ data }) => {
           />
 
         <div className="flex justify-end mt-4"> {/* Added margin top for spacing */}
-         <button
-            className=' text-blue-600 flex items-center justify-center gap-2 px-4 py-2 rounded-lg border-2 border-blue-600 font-medium hover:bg-blue-600 hover:text-white transition-colors hover:cursor-pointer'
-            onClick={() => window.open(`/quote-pdf/${data.id}`, '_blank')} 
-         >
-                <FaPrint /> View PDF
-        </button>
+         
         </div>
       </div>
     </div>
@@ -108,20 +100,51 @@ const ExpandedComponent = ({ data }) => {
 
 // Main component with the data table and search functionality
 export default function Quotes() {
+
   const [filterText, setFilterText] = useState('');
+  const navigate = useNavigate();
+ const updatedQuoteData = initialQuoteData.map(quote => {
+  const subtotal = quote.items.reduce((sum, item) => sum + item.qty * item.unitCost, 0);
+  const gst = subtotal * 0.125;
+  const total = subtotal + gst;
+  return { ...quote, subtotal, gst, total };
+});
+
+    const handleViewDetails = (row) => {
+       navigate(`/quote/${row.id}`, { state: { quote: row } });
+     };
 
   const filteredData = useMemo(() => {
-    return initialQuoteData.filter(
-      (item) => item.id && item.id.toLowerCase().includes(filterText.toLowerCase()) ||
-               item.date && item.date.toLowerCase().includes(filterText.toLowerCase())
-    );
-  }, [filterText]);
+  if (!filterText) {
+    return updatedQuoteData; // Return all data if no filter is applied
+  }
+  return updatedQuoteData.filter(
+    (item) => item.id && item.id.toLowerCase().includes(filterText.toLowerCase()) ||
+    item.date && item.date.toLowerCase().includes(filterText.toLowerCase())
+  );
+}, [filterText]);
 
   const quoteColumns = [
-    { name: 'Quote #', selector: row => row.id, sortable: true, grow: 1 },
-    { name: 'Date', selector: row => row.date, sortable: true },
-    
-  ];
+  { name: 'Quote #', selector: row => row.id, sortable: true, grow: 1 },
+  { name: 'Date', selector: row => row.date, sortable: true, center:true },
+  { name: 'Subtotal', selector: row => `$${row.subtotal.toFixed(2)}`, sortable: true, center:true},
+  { name: 'GST', selector: row => `$${row.gst.toFixed(2)}`, sortable: true, center:true },
+  { name: 'Total', selector: row => `$${row.total.toFixed(2)}`, sortable: true, center:true },
+  {
+      name: 'Actions',
+      cell: row => (
+        <button
+          onClick={() => handleViewDetails(row)}
+          className="bg-blue-500 hover:bg-blue-600 text-white font-bold p-1 rounded-md text-sm transition-colors duration-200"
+        >
+          View Details
+        </button>
+      ),
+      ignoreRowClick: true,
+      allowOverflow: true,
+      button: true,
+    },
+];
 
   return (
     <main className="w-full p-10 ">

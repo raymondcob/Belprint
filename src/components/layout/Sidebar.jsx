@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { RxDashboard } from "react-icons/rx";
 import { PiUploadSimpleFill } from "react-icons/pi";
-import { MdFavorite, MdHistory,MdKeyboardDoubleArrowRight,MdKeyboardDoubleArrowLeft } from "react-icons/md";
+import { MdFavorite, MdHistory, MdKeyboardDoubleArrowRight, MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { FaEnvelopeOpenText } from "react-icons/fa6";
 import { CiSettings } from "react-icons/ci";
 import { FiCompass } from "react-icons/fi";
@@ -10,8 +10,8 @@ import { FaFileInvoice } from "react-icons/fa";
 import { TbLayoutSidebarRightExpand } from "react-icons/tb";
 
 const Sidebar = ({ isVisible, onHide }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const location = useLocation();
 
   const menuItems = [
     { type: "link", icon: RxDashboard, label: "Dashboard", href: "/dashboard" },
@@ -23,16 +23,16 @@ const Sidebar = ({ isVisible, onHide }) => {
     { type: "link", icon: FaEnvelopeOpenText, label: "Quotes", href: "/quotes" },
     { type: "link", icon: FaFileInvoice, label: "Invoice", href: "/invoice" },
     { type: "link", icon: FiCompass, label: "Track Order", href: "/track-order" },
-    { type: "header", label: "Settings " },
+    { type: "header", label: "Settings" },
     { type: "link", icon: CiSettings, label: "Account Settings", href: "/acct-settings" },
   ];
 
   return (
     <>
-      {/* Mobile Overlay */}
+      {/* Mobile Overlay with Backdrop Blur */}
       {isMobileOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          className="fixed inset-0 bg-black/30 z-40 lg:hidden backdrop-blur-sm"
           onClick={() => setIsMobileOpen(false)}
         />
       )}
@@ -40,85 +40,55 @@ const Sidebar = ({ isVisible, onHide }) => {
       {/* Mobile Toggle Button */}
       <button
         onClick={() => setIsMobileOpen(!isMobileOpen)}
-        className="fixed top-4 mb-2 left-2 z-50 lg:hidden bg-black text-white p-2 rounded-md"
+        className="fixed top-4 left-2 z-50 lg:hidden bg-white text-gray-900 p-2 rounded-md shadow-lg transition-transform hover:scale-105"
       >
-        <TbLayoutSidebarRightExpand size={27}/>
+        <TbLayoutSidebarRightExpand size={24} />
       </button>
 
       {/* Sidebar */}
       <aside
         className={`
-          fixed lg:static inset-y-0 left-0 z-50
-          bg-gray-900 text-white
-          transform transition-transform duration-300 ease-in-out
-          ${
-            isMobileOpen || isVisible
-              ? "translate-x-0"
-              : "-translate-x-full lg:translate-x-0"
-          }
-          ${isCollapsed ? "w-16" : "w-80"}
-          lg:block
+          fixed lg:static inset-y-0 left-0 z-50 
+          bg-white shadow-xl
+          transform transition-transform duration-300 ease-in-out w-72 
+          ${isMobileOpen ? "translate-x-0" : "-translate-x-full"}
+          lg:translate-x-0 lg:block
         `}
       >
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-700">
-            {!isCollapsed && <h2 className="text-xl font-bold">Account Dashbaord</h2>}
-            <div className="flex gap-2">
-              {isVisible && (
-                <button
-                  onClick={onHide}
-                  className="lg:hidden p-2 hover:bg-gray-700 rounded text-white"
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              )}
-              <button
-                onClick={() => setIsCollapsed(!isCollapsed)}
-                className="hidden lg:block  hover:bg-gray-700 rounded"
-              >
-                {isCollapsed ?  <MdKeyboardDoubleArrowRight size={20}/> : <MdKeyboardDoubleArrowLeft size={20}/> }
-              </button>
-            </div>
+          <div className="flex items-center justify-between p-6 border-b border-gray-200">
+            <h2 className="text-xl font-bold text-gray-900">Account Dashboard</h2>
+            {/* The close button is now part of the mobile toggle and handled by the overlay */}
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 p-4">
-            <ul className="space-y-2">
+          <nav className="flex-1 p-4 overflow-y-auto">
+            <ul className="space-y-1">
               {menuItems.map((item, index) => {
                 if (item.type === "header") {
                   return (
-                    <li key={index} className="mt-4">
-                      {!isCollapsed && (
-                        <h3 className="text-xs font-semibold uppercase text-gray-500 tracking-wider">
-                          {item.label}
-                        </h3>
-                      )}
+                    <li key={index} className="mt-4 first:mt-0">
+                      <h3 className="text-xs font-semibold uppercase text-gray-500 tracking-wider px-3">
+                        {item.label}
+                      </h3>
                     </li>
                   );
                 } else {
+                  const isActive = location.pathname === item.href;
                   return (
                     <li key={index}>
                       <Link
                         to={item.href}
-                        className={`flex items-center gap-3 p-3 rounded-lg hover:bg-gray-700 transition-colors ${isCollapsed && "justify-center"}`}
+                        onClick={() => isMobileOpen && setIsMobileOpen(false)} // Close sidebar on mobile after clicking a link
+                        className={`flex items-center gap-3 p-3 rounded-lg transition-colors
+                          ${isActive 
+                            ? "bg-gray-100 text-gray-900 font-semibold" 
+                            : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                          }`}
                       >
-                        <item.icon className="w-5 h-5 flex-shrink-0" />
-                        {!isCollapsed && (
-                          <span className="text-sm font-medium">{item.label}</span>
-                        )}
+                        <item.icon className={`w-5 h-5 flex-shrink-0 ${isActive ? "text-gray-900" : "text-gray-500"}`} />
+                        <span className="text-sm">{item.label}</span>
                       </Link>
                     </li>
                   );
@@ -128,13 +98,11 @@ const Sidebar = ({ isVisible, onHide }) => {
           </nav>
 
           {/* Footer */}
-          <div className="p-4 border-t border-gray-700">
-            {!isCollapsed && (
-              <div className="text-xs text-gray-400">
-                <p>© 2024 BelPrint</p>
-                <p>Belize</p>
-              </div>
-            )}
+          <div className="p-6 border-t border-gray-200">
+            <div className="text-xs text-gray-500">
+              <p>© 2024 BelPrint</p>
+              <p>Belize</p>
+            </div>
           </div>
         </div>
       </aside>

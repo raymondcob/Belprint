@@ -1,5 +1,9 @@
 import React from 'react';
-import { FaPrint, FaDesktop, FaShoppingCart, FaTruck, FaUsers, FaAward } from 'react-icons/fa';
+import { FaShippingFast,FaAward } from 'react-icons/fa';
+import { TbCoin } from "react-icons/tb";
+import { GiDrill } from "react-icons/gi";
+import { MdDesignServices } from "react-icons/md";
+import { LiaFileInvoiceDollarSolid } from "react-icons/lia"
 
 // Timeline ServiceCard Component
 const TimelineServiceCard = ({ number, title, description, icon: Icon, imageSrc, isEven }) => {
@@ -102,49 +106,49 @@ const ServiceCard = ({ title, description, icon: Icon, color, bgColor, iconColor
 
 const services = [
   {
-    title: "Custom Printing",
-    description: "High-quality custom printing services for banners, labels, signs, and promotional materials with premium finishes.",
-    icon: FaPrint,
+    title: "Country Wide Shipping",
+    description: "Seamless Shipping Solutions Across the Entire Country. Fast. Reliable.",
+    icon: FaShippingFast,
     color: "from-blue-500 to-blue-600",
     bgColor: "bg-blue-50",
     iconColor: "text-blue-600"
   },
   {
-    title: "Digital Design",
-    description: "Professional graphic design services to create stunning visuals that capture your brand's essence and message.",
-    icon: FaDesktop,
+    title: "Prices that Suit You",
+    description: "Proudly offering great prices, delivering excellent value for our customers.",
+    icon: TbCoin,
     color: "from-purple-500 to-purple-600",
     bgColor: "bg-purple-50",
     iconColor: "text-purple-600"
   },
   {
-    title: "E-Commerce Solutions",
-    description: "Complete online store setup and management to help you sell your products and services effectively online.",
-    icon: FaShoppingCart,
+    title: "Installation Services",
+    description: "Trust our experts for safe, proper sign installation without worries.",
+    icon: GiDrill,
     color: "from-green-500 to-green-600",
     bgColor: "bg-green-50",
     iconColor: "text-green-600"
   },
   {
-    title: "Fast Delivery",
-    description: "Reliable nationwide shipping with real-time tracking to ensure your orders arrive safely and on schedule.",
-    icon: FaTruck,
+    title: "Graphic Design",
+    description: "Our trained experts work with you to create impactful, effective designs.",
+    icon: MdDesignServices,
     color: "from-orange-500 to-orange-600",
     bgColor: "bg-orange-50",
     iconColor: "text-orange-600"
   },
   {
-    title: "Customer Support",
-    description: "Dedicated customer service team available to assist you throughout your project from start to finish.",
-    icon: FaUsers,
+    title: "Amazing Quality",
+    description: "we take great pride in our commitment to providing top-of-the-line products to our valued customers.",
+    icon: FaAward,
     color: "from-teal-500 to-teal-600",
     bgColor: "bg-teal-50",
     iconColor: "text-teal-600"
   },
   {
-    title: "Quality Guarantee",
-    description: "100% satisfaction guarantee with rigorous quality control processes ensuring exceptional results every time.",
-    icon: FaAward,
+    title: "Instant Quotes",
+    description: "Choose a sign of your liking and get an instant quote",
+    icon: LiaFileInvoiceDollarSolid,
     color: "from-red-500 to-red-600",
     bgColor: "bg-red-50",
     iconColor: "text-red-600"
@@ -206,14 +210,7 @@ const OurServices = () => {
           ))}
         </div>
       </div>
-      
-      {/* Call to Action */}
-      <div className="text-center mt-16 relative z-20">
-        <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 hover:from-blue-700 hover:to-purple-700">
-          Get Started Today
-        </button>
-      </div>
-      
+    
       {/* Bottom Accent */}
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
     </section>
