@@ -71,15 +71,16 @@ const TrustCuesSlider = () => {
   };
 
   return (
-    <div className="w-full py-12 bg-white">
-      <div className="container mx-auto px-8">
-        <div className="text-center mb-20">
-          <p 
-            className="text-blue-500 font-bold text-4xl "
+    <div className="w-full py-16 bg-gradient-to-b from-slate-50 to-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 
+            className="text-slate-800 font-bold text-3xl md:text-4xl lg:text-5xl mb-4"
             style={{ fontFamily: 'Poppins, sans-serif' }}
           >
             Trusted by Industry Leaders
-          </p>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-slate-600 to-slate-400 mx-auto rounded-full"></div>
         </div>
         <div className="trust-cues-slider w-full">
           <Slider {...settings}>
